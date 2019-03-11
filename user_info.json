@@ -1,0 +1,10 @@
+[
+{"type":"header","version":"4.8.4","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"shopstore"},
+{"type":"table","name":"user_info","database":"shopstore","data":
+[
+{"user_id":"7","fname":"Kenichi","lname":"Wijitpana","email":"bluebox009@gmail.com","password":"1234567","phone":"","adress1":"","adress2":"","Userlevel":"M","born":"2541-08-08","gender":"male"},
+{"user_id":"8","fname":"Kenichi","lname":"Wijitpana","email":"bluebox07@gmail.com","password":"1234567","phone":"","adress1":"","adress2":"","Userlevel":"A","born":"2541-08-01","gender":"male"}
+]
+}
+]

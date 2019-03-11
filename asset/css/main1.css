@@ -1,0 +1,106 @@
+h2{
+    color: white;
+}
+
+
+.card-img-top {
+    width: 100%;
+    height: 10vw;
+}
+
+/* .card>img{
+    height: 178px!important;
+} */
+.card-body>p{
+    /* text-align: justify; */
+    line-height: 18px;
+    color: #212529;
+}
+.card-body{
+    margin: 0;
+    padding: 5px 5px 5px 5px;
+    height: 42px!important;
+    overflow: hidden;
+    font-size: .875rem;
+}
+.card{
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: all .25s ease;
+    animation: populate .5s ease-out normal backwards;
+}
+.card:hover{
+    transform: scale(1.05);
+    z-index: 1;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+.tab-price{
+    margin: 0;
+    margin-left: 8px;
+    position: relative;
+    display: inline-block;
+  }
+  .old-price{
+    position: relative;
+    display: inline;
+    color: #818181;
+  }
+
+  .new-price{
+    position: relative;
+    display: inline;
+    color: #2469d9;
+  }
+
+  .cart{
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      display: inline-block;
+  }
+/* Dropdown hover display */
+  /* .dropdown:hover>.dropdown-menu {
+    display: block;
+  }
+  
+  .dropdown>.dropdown-toggle:active {
+      pointer-events: none;
+  } */
+
+  /* #boxset{
+      position: absolute;
+      margin-top: 430px;
+  } */
+  .colect-box{
+      margin: 0;
+      padding: 0;
+      display: block;
+      width: 420px;
+  }
+  .colect-box>.box-small{
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    margin: 2.5px 2.5px 2,5px 2.5px;
+
+}
+.box-small>img{
+    width:90px;
+    height:90px; 
+}
+.clearfix{
+    clear: both;
+}
+.card img{
+    height: 325px;
+}
+a:active{
+    text-decoration: none;
+}
+button > a:hover{
+    text-decoration: none;
+    color:white;
+}
