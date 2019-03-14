@@ -16,7 +16,7 @@
     <script src="./asset/js/bootstrap.min.js"></script>
 
     <!-- <script src="./asset/js/main.js"></script> -->
-    <link rel="stylesheet" href="./asset/css/main1.css">
+    <!-- <link rel="stylesheet" href="./asset/css/main1.css"> -->
     <script src="./asset/js/bootstrap-password-toggler.min.js"></script>
     <link href="./asset/css/bsDatepicker.css" rel="stylesheet" />
     <script src="./asset/js/boot-datepicker.js"></script>

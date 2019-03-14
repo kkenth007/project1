@@ -105,12 +105,11 @@ header ('Content-type: text/html; charset=UTF-8');
             <div class="col-md-2">
                 <ul id="get_category" style="padding-left: 0px;"></ul>
                 <ul id="get_brand" style="padding-left: 0px;"></ul>
-
             </div>
             <div class="col-md-8">
                 <div class="card-columns" style="margin-top:16px;">
                     <div class="card">
-                        <img class="card-img-top" src="https://cf.shopee.co.th/file/3b4080484aa1ef4943b2422fed8e9325">
+                        <img class="card-img-top" src="https://i.imgur.com/26ii7Kp.png">
                         <div class="card-body">
                             <!-- <h5 class="card-title">Title</h5> -->
                             <p class="card-text">⚡️โปร2.2⚡️เสื้อกันหนาว [สารพัดกัน] กันลม กันแดด กันร้อน ฮู้ดแขนยาว
@@ -128,7 +127,7 @@ header ('Content-type: text/html; charset=UTF-8');
                     </div>
 
                     <div class="card">
-                        <img class="card-img-top" src="https://cf.shopee.co.th/file/080f373a998015f1a1306e147639a787">
+                        <img class="card-img-top" src="https://i.imgur.com/26ii7Kp.png">
                         <div class="card-body">
                             <p class="card-text">⚡️สินค้าขายดี2019⚡️ถูกที่สุดในshopee เสื้อฮาวาย ลายเกาหลี👉CODE ลด :
                                 NEWMEW👈</p>
@@ -144,7 +143,7 @@ header ('Content-type: text/html; charset=UTF-8');
                         </div>
                     </div>
                     <div class="card">
-                        <img class="card-img-top" src="https://cf.shopee.co.th/file/8ccc3b262c2cb595d993f02a0c4b4be0">
+                        <img class="card-img-top" src="https://i.imgur.com/26ii7Kp.png">
                         <div class="card-body">
                             <p class="card-text">🔥งานเกาหลี🔥Hawaii Shirt เสื้อเชิ้ตลายทาง เชิ้ตเกาหลี ฮาวาย
                                 เกาหลีมาแรง</p>
@@ -163,7 +162,7 @@ header ('Content-type: text/html; charset=UTF-8');
                     <!-- card2 -->
                     <div class="card">
                         <img class="card-img-top"
-                            src="http://wallpaperen.com/wp-content/uploads/2018/01/deluxe-stylish-girl-with-attitude-wallpaper-best-top-50-whatsapp-dp-images-for-girls-cool-stylish-stylish-girl-with-attitude-wallpaper.jpg">
+                            src="https://i.imgur.com/26ii7Kp.png">
                         <div class="card-body">
                             <p class="card-text">ไม่พูดเยอะเจ็บคอ เสื้อเชิ้ตเกาหลีชาย ลายสุดฮิตถูกสุดใน
                                 Shopeeส่งของวันพุธนะจ่ะ</p>
@@ -232,10 +231,10 @@ header ('Content-type: text/html; charset=UTF-8');
             }).datepicker("setDate", "0");  //กำหนดเป็นวันปัจุบัน
         });
 
-        bootstrapValidate(
-        '#docs-demo',
-        'email:Enter a valid E-Mail Address!'
-        );
+        // bootstrapValidate(
+        // '#docs-demo',
+        // 'email:Enter a valid E-Mail Address!'
+        // );
 </script>
 
 </body>

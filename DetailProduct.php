@@ -60,7 +60,7 @@ $ID_Pro = $_GET['item_id'];
             <div class="col-md-8">
                 <div class="card-columns" style="margin-top:20px;">
     <!-- fancy start -->
-        <section id="fancy">
+        <section id="fancy" class="col-md-6">
         <div class="large-5 column">
         <div class="xzoom-container">
           <img class="xzoom4" id="xzoom-fancy" src="images/gallery/preview/01_b_car.jpg" xoriginal="images/gallery/original/01_b_car.jpg" />
@@ -72,7 +72,9 @@ $ID_Pro = $_GET['item_id'];
           </div>
         </div>          
       </div>
-      <div class="large-7 column"></div>
+      <div class="large-7 column col-md-4">
+      <h1>รถยนต์</h1>
+      </div>
     </section>   
     <!-- fancy end -->
         

@@ -3,6 +3,9 @@
 header ('Content-type: text/html; charset=UTF-8');
 ?>
 
+<?php 
+if(isset($_SESSION) && $_SESSION["Userlevel"]=="A"){ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,7 +62,7 @@ header ('Content-type: text/html; charset=UTF-8');
                     </form>
                 </li>
             </ul>
-            <ul class="navbar-nav ml-auto">
+            <!-- <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown show myshow">
                     <a class="nav-link dropdown" style="padding-right: 20px;" href="#" id="dropdown03"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i
@@ -171,23 +174,62 @@ header ('Content-type: text/html; charset=UTF-8');
                 </li>
                 <li class="nav-item">
                             <a class="nav-link" style="padding-right: 20px;" href="#"><i class="fas fa-user"></i> Log In</a>
-                        </li>
-            </ul>
+                </li>
+            </ul> -->
 
         </div>
 
     </nav>
-<div style="margin-left:50px;">
-<h1>คุณคือผู้ดูเเลระบบ </h1>
-    <p><strong>hi</strong> :&nbsp;<?php print_r($_SESSION);?>
-      <?php //session_destroy();?>
-    </p>
-    <p>&nbsp;</p>
-    <p><a href="logout.php" class="btn btn-danger">Log out</strong></a></p>
-    <p>&nbsp;</p>
-</div>
+
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1"></div>
+                <div class="col-md-2">
+                    <ul id="get_category" style="padding-left: 0px;"></ul>
+                    <!-- <ul id="get_brand" style="padding-left: 0px;"></ul> -->
+                </div>
+                <div class="col-md-8">
+                <div style="margin-left:50px;">
+                    <h1>คุณคือผู้ดูเเลระบบ </h1>
+                        <p><strong>hi</strong> :&nbsp;<?php print_r($_SESSION);?>
+                        <?php //session_destroy();?>
+                        <?PHP 
+                        //  if($_SESSION["Userlevel"] == null){ //ถ้าเป็น admin ให้กระโดดไปหน้า admin_page.php
+
+                        //     Header("Location: admin_page.php");
+                        //     // echo "คุณคือแอดมิน";
+    
+                        //   }
+                        // if (!isset($_SESSION)){
+                        //     Header("Location: admin_page.php");
+                        // }
+
+                        ?>
+                        </p>
+                        <p>&nbsp;</p>
+                        <p><a href="logout.php" class="btn btn-danger">Log out</strong></a></p>
+                        <p>&nbsp;</p>
+                    </div>
+                </div>
+            </div>
+    </div>
 
 
 </body>
 
 </html>
+
+
+
+
+<?php }else{ ?>
+
+<script>
+//  location.reload();
+location.replace("index.php");
+// console.log(window.location.hostname + window.location.pathname;);
+
+</script>
+
+<?php } ?>
+
