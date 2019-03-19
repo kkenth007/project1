@@ -1,18 +1,37 @@
 <?php
 include("db.php");
+if(isset($_POST['cat_id']) || isset($_POST['brand_id']) || isset($_POST['search'])){
+    // $cid = $_POST['cat_id'];
+    // $bid = $_POST['brand_id'];
+    // print_r($bid);
+    // print_r($cid);
+    if(isset($_POST['cat_id'])){
+        $cid = $_POST['cat_id'];
+        $selected_product = "SELECT * FROM products WHERE product_cat ='$cid'";
+    }elseif(isset($_POST['brand_id'])){
+        $bid = $_POST['brand_id'];
+        $selected_product = "SELECT * FROM products WHERE product_brand ='$bid'";
+    }else{
+        $id = $_POST['keyword'];
+        $selected_product = "SELECT * FROM products WHERE product_title or product_keywords LIKE '%$id%'";
+    }
 
-// echo $_POST['id'];
-// $id =$_POST['id'];
-// $id=2;'
-// if(isset($_POST["getProduct"])){
 
-if(isset($_POST["id"])){
-    $product_query = "SELECT * FROM products ORDER BY RAND() LIMIT 0,6";
-    // $product_query = "SELECT * FROM products;";
-    $run_query_pro = mysqli_query($con,$product_query);
-    // print_r( $run_query_pro);    
-    if(mysqli_num_rows($run_query_pro)> 0){
-        while($row = mysqli_fetch_array($run_query_pro)){
+
+    // if(isset($_POST['id'])){
+    //     $id = $_POST['cat_id'];
+    //     $brand_query = "SELECT * FROM products WHERE product_cat ='$id'";
+    // }elseif(isset($_POST['selectBrand'])){
+    //     $id = $_POST['brand_id'];
+    //     $brand_query = "SELECT * FROM products WHERE product_brand ='$id'";
+    // }
+
+
+    // $selected_product = "SELECT * FROM products WHERE product_cat ='$cid'";
+    $run_query_pro = mysqli_query($con, $selected_product);
+    // print_r($run_query_pro);
+
+    while($row = mysqli_fetch_array($run_query_pro )){
             $pro_id = $row["product_id"];
             $pro_cat = $row["product_cat"];
             $pro_brand = $row["product_brand"];
@@ -39,9 +58,7 @@ if(isset($_POST["id"])){
             ";
 
         }
-    }
-}else{
-    echo "ไม่มีสินค้าเเนะนำ ";
+    
 }
 
 ?>

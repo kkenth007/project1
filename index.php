@@ -38,7 +38,7 @@
             <div class="col-md-8">
                 <div class="card-columns" style="margin-top:16px;">
                 <div id="geter_product">
-                
+
                 </div>
                     <!-- <div class="card" >
                         <img class="card-img-top" src="asset/products_img/06300fd8c70c731b.jpg">

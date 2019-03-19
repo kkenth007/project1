@@ -12,7 +12,7 @@
     }
     $dateTrue= change($date);
     $gender = $_POST['gender'];
-    $level = $_POST['level'];
+    $level = "M";
     
 	//query 
     $sql="INSERT INTO user_info (fname,lname,email,password,Userlevel,born,gender) 

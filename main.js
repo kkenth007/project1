@@ -2,9 +2,11 @@ var categories=1;
 var brands = 1;
 var products= 1;
 $(document).ready(function(){
+    
 cat();
 brand();
 product();
+
 function cat(){
     $.ajax({
                 url:"action.php",
@@ -36,5 +38,49 @@ function product(){
                 }
             });
 }
+
+    $("body").delegate(".category","click",function (event){
+        event.preventDefault();
+        var cid = $(this).attr('cid');
+        // alert(cid);  
+        $.ajax({
+            url:"actionSelect.php",
+            method:"post",
+            data:{id:categories,cat_id:cid},
+            success:function(data){
+                $('#geter_product').html(data);
+            }
+        });
+    });
+
+    $("body").delegate(".selectBrand","click",function (event){
+        event.preventDefault();
+        var bid = $(this).attr('bid');
+        // console.log(bid);
+        
+        // alert(bid);
+        $.ajax({
+            url:"actionSelect.php",
+            method:"post",
+            data:{id:brands,brand_id:bid},
+            success:function(data){
+                $('#geter_product').html(data);
+            }
+        });
+    });
+
+    $("#search_btn").click(function (){
+        var keyword = $("#search").val();
+        if(keyword != ""){
+            $.ajax({
+                url:"actionSelect.php",
+                method:"post",
+                data:{search:1,keyword:keyword},
+                success:function(data){
+                    $('#geter_product').html(data);
+                }
+            });
+        }
+    });
 
 });

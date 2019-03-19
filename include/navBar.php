@@ -21,7 +21,7 @@
                         <input style="width:300px;margin-left: 10px;" class="form-control mr-sm-2" type="text"
                             id="search" placeholder="Search">
                         <button class="btn btn-primary my-2 my-sm-0" type="button"
-                            style="border:1px solid#ffffff;">Search</button>
+                            style="border:1px solid#ffffff;" id="search_btn">Search</button>
                     </form>
                 </li>
             </ul>
@@ -84,7 +84,6 @@
                                                 autocomplete="off" placeholder="กรอกอีเมล์ของคุณ.." required>
                                             <span id="emailMsg"></span>
                                         </div>
-                                        <input type="hidden" name="level" value="M">
                                         <div class="form-group">
                                             <label for="password">รหัสผ่าน</label>
                                             <input class="form-control" id="pass" name="password" name="password"
