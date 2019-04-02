@@ -19,14 +19,12 @@ session_start();
                       $_SESSION["Userlevel"] = $row["Userlevel"];
 
                       if($_SESSION["Userlevel"]=="A"){ //ถ้าเป็น admin ให้กระโดดไปหน้า admin_page.php
-
                         Header("Location: admin_page.php");
                         echo "คุณคือแอดมิน";
 
                       }
 
                       if ($_SESSION["Userlevel"]=="M"){  //ถ้าเป็น member ให้กระโดดไปหน้า user_page.php
-
                         echo "คุณคือสมาชิก";
                         Header("Location: tesp1.html");
                       }

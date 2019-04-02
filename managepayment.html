@@ -65,8 +65,6 @@
             return false;
         }
     }
-
-
 </script>
 
 <body>
@@ -224,7 +222,83 @@
 
     </nav>
 
-    <?php include 'listProduct.php' ?>
+    <!-- <?php include 'listProduct.php' ?> -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
+                <ul id="get_category" style="padding-left: 0px;"></ul>
+                <ul id="get_brand" style="padding-left: 0px;"></ul>
+            </div>
+            <div class="col-md-8" style="margin-top:16px;">
+                <table class="table table-bordered" style="margin-top:16px;">
+                    <thead>
+                        <!-- <button class="btn btn-success">เพิ่มธนาคาร</button> -->
+                        <tr>
+                            <th scope="col">ลำดับการสั่งซื้อ</th>
+                            <th scope="col">รหัสการสั่งซื้อ</th>
+                            <th scope="col">รหัสสมาชิก</th>
+                            <th scope="col">จำนวนเงิน</th>
+                            <th scope="col">ดูรายละเอียด</th>
+                            <th scope="col">สถานะ</th>
+                            <th scope="col">แก้ไข</th>
+                            <th scope="col">ลบ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>16471345</td>
+                            <td>654315455</td>
+                            <td>2500</td>
+                            <td><button class="btn btn-success">รายละเอียด</button></td>
+                            <td>ชำระแล้ว</td>
+                            <td><input type="button" class="btn btn-warning" value="แก้ไข"></td>
+                            <td><button class="btn btn-danger">ลบ</button></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th> 
+                            <td>16475346</td>
+                            <td>654315456</td>
+                            <td>3650</td>
+                            <td><button class="btn btn-success">รายละเอียด</button></td>
+                            <td>ชำระแล้ว</td>
+                            <td><input type="button" class="btn btn-warning" value="แก้ไข"></td>
+                            <td><button class="btn btn-danger">ลบ</button></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>16471347</td>
+                            <td>654315457</td>
+                            <td>67631</td>
+                            <td><button class="btn btn-success">รายละเอียด</button></td>
+                            <td>ยังไม่ชำระ</td>
+                            <td><input type="button" class="btn btn-warning" value="แก้ไข"></td>
+                            <td><button class="btn btn-danger">ลบ</button></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>16471348</td>
+                            <td>654315459</td>
+                            <td>12046</td>
+                            <td><button class="btn btn-success">รายละเอียด</button></td>
+                            <td>รอการยืนยัน</td>
+                            <td><input type="button" class="btn btn-warning" value="แก้ไข"></td>
+                            <td><button class="btn btn-danger">ลบ</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-1 ">
+
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="hidden" id="hidden" value="1">
+
+
+    <script src="main.js"></script>
+
 
     <script>
         $(document).on('click', '.myshow .dropdown-menu', function (e) {
@@ -236,10 +310,9 @@
                 format: 'dd/mm/yyyy',
                 todayBtn: true,
                 language: 'th',
-                thaiyear: true              //Set เป็นปี พ.ศ.
-            }).datepicker("setDate", "0");  //กำหนดเป็นวันปัจุบัน
+                thaiyear: true //Set เป็นปี พ.ศ.
+            }).datepicker("setDate", "0"); //กำหนดเป็นวันปัจุบัน
         });
-
     </script>
 
 </body>

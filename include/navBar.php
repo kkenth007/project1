@@ -21,7 +21,7 @@
                         <input style="width:300px;margin-left: 10px;" class="form-control mr-sm-2" type="text"
                             id="search" placeholder="Search">
                         <button class="btn btn-primary my-2 my-sm-0" type="button"
-                            style="border:1px solid#ffffff;" id="search_btn">Search</button>
+                            style="border:1px solid#ffffff;" id="search_btn"><i class="fas fa-search"></i> Search</button>
                     </form>
                 </li>
             </ul>
@@ -40,21 +40,35 @@
                                     <div class="row">
                                         <div class="col-md-3">
                                             ลำดับสินค้า
+                                            <div>
+                                            <b >1</b>
+                                            </div>
                                         </div>
                                         <div class="col-md-3">
                                             รูปภาพสินค้า
+                                            <div class="image-price">
+                                            <img class="img-fluid" src="https://www.oishifood.com/upload_file/packed/gyoza_pork.png" alt="">
+                                            </div>
                                         </div>
                                         <div class="col-md-3">
                                             ชื่อสินค้า
+                                            <div class="name-product">
+                                            <p>Oishi Gyoza Pork</p>
+                                            </div>
                                         </div>
                                         <div class="col-md-3">
                                             ราคาสินค้า
+                                            <div class="price">
+                                            <p>฿ 32.00 </p>
+                                            </div>
                                         </div>
                                     </div>
 
                                 </div>
                                 <div class="panel-body"></div>
-                                <div class="panel-footer" id="e_msg"></div>
+                                <div class="panel-footer" id="e_msg">
+                                <button class="btn btn-success text-white" ><a href="order_detail.php">ไปยังตะกล้าสินค้า</a></button>
+                                </div>
                             </div>
                         </div>
                     </div>

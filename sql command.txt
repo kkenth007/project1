@@ -1,0 +1,3 @@
+﻿ALTER TABLE products
+ADD FOREIGN KEY (product_brand)   
+REFERENCES brand (brand_id)
