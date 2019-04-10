@@ -34,3 +34,7 @@ if(isset($_POST['cat_id'])){
         }
     
 }
+
+JOIN TABLE 
+SELECT product_id ,product_keywords,product_price,product_stock,product_title,product_image, product_brand, brand_title FROM 
+products INNER JOIN brand ON product_brand = brand_id where product_brand ORDER BY product_id ASC

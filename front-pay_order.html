@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>index</title>
+    <link rel="stylesheet" href="./asset/css/bootstrap.min.css">
+    <link rel='shortcut icon' type='image/x-icon' href='./asset/img/logo.ico' />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="./asset/js/jquery-3.3.1.min.js"></script>
+    <script src="./asset/js/bootstrap.min.js"></script>
+    <script src="./asset/js/popper.min.js"></script>
+    <!-- <script src="./asset/js/main.js"></script> -->
+    <link rel="stylesheet" href="./asset/css/main1.css">
+    <script src="./asset/js/bootstrap-password-toggler.min.js"></script>
+    <script src="main.js"></script>
+    <link href="./asset/css/bsDatepicker.css" rel="stylesheet" />
+    <script src="./asset/js/boot-datepicker.js"></script>
+    <script src="./asset/js/bootstrap-datepicker.th.min.js" charset="UTF-8"></script>
+
+</head>
+<script>
+    $(document).ready(function () {
+        $("#email").keyup(function () {
+            if (validateEmail()) {
+                $("#email").css("border", "2px solid green");
+                $("#emailMsg").html("<p class='text-success'>อีเมล์ถูกต้อง </p>");
+            } else {
+                $("#email").css("border", "2px solid red");
+                $("#emailMsg").html("<p class='text-danger'>อุ๊ป อีเมล์ไม่ถูกต้อง</p>");
+            }
+        });
+
+        $("#pass").keyup(function () {
+            if (validatePassword()) {
+                $("#pass").css("border", "2px solid green");
+                $("#passMsg").html("<p class='text-success'>รหัสผ่านถูกต้อง</p>");
+            } else {
+                $("#pass").css("border", "2px solid red");
+                $("#passMsg").html("<p class='text-danger'>รหัสผ่านไม่ถูกต้อง</p>");
+            }
+        });
+
+    });
+
+    function validateEmail() {
+        var email = $("#email").val();
+        var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+        if (reg.test(email)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function validatePassword() {
+        var pass = $("#pass").val();
+        //ตรวจสอบความยาว
+        if (pass.length > 7) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#007bff;">
+        <a class="navbar-brand" href="javascript:void(0)">
+            <h2>Shopee</h2>
+        </a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navb">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href=""><i class="fas fa-home"></i> Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="#"><i class="fab fa-buromobelexperte"></i> Product </a>
+                </li>
+                <li class="nav-item">
+                    <form class="form-inline my-2 my-lg-0">
+                        <input style="width:300px;margin-left: 10px;" class="form-control mr-sm-2" type="text"
+                            id="search" placeholder="Search">
+                        <button class="btn btn-primary my-2 my-sm-0" type="button"
+                            style="border:1px solid#ffffff;">Search</button>
+                    </form>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown show myshow">
+                    <a class="nav-link dropdown" style="padding-right: 20px;" href="#" id="dropdown03"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i
+                            class="fas fa-shopping-cart"></i> Cart <span class="badge badge-light">0</span></a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown03">
+                        <div style="width:500px;padding: 16px;">
+                            <div class="panel panel-success">
+                                <div class="panel-heading text-center">
+                                    <h4> <i class="fas fa-shopping-basket"></i> ตะกร้าสินค้า</h4>
+                                </div>
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            ลำดับสินค้า
+                                        </div>
+                                        <div class="col-md-3">
+                                            รูปภาพสินค้า
+                                        </div>
+                                        <div class="col-md-3">
+                                            ชื่อสินค้า
+                                        </div>
+                                        <div class="col-md-3">
+                                            ราคาสินค้า
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="panel-body"></div>
+                                <div class="panel-footer" id="e_msg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+        <li class="nav-item dropdown show myshow">
+            <a class="nav-link dropdown-toggle" style="padding-right: 20px;" href="#" id="dropdown03"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fas fa-users-cog"></i>
+                เมนู</a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown03">
+                <div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading text-center">
+                            <h4>เมนู</h4>
+                        </div>
+                                  <a class="dropdown-item" href="#"> <i class="fas fa-id-card"></i> ประวัติส่วนตัว</a>
+                                  <a class="dropdown-item" href="#"><i class="fas fa-file-invoice"></i> คำสั่งซื้อ</a>
+                                  <a class="dropdown-item" href="#"> <i class="fas fa-key"></i> เปลี่ยนรหัสผ่าน</a>
+                                  <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> ออกจากระบบ</a>
+                         
+                        <div class="panel-footer" id="e_msg"></div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <!-- <li class="nav-item">
+                            <a class="nav-link" style="padding-right: 20px;" href="#"><i class="fas fa-user"></i> Log In</a>
+                        </li> -->
+        </ul>
+
+        </div>
+
+    </nav>
+
+    <!-- <?php include 'listProduct.php' ?> -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
+                <ul id="get_category" style="padding-left: 0px;"></ul>
+                <ul id="get_brand" style="padding-left: 0px;"></ul>
+            </div>
+            <div class="col-md-8" style="margin-top:16px;">
+                <h4>หมายเลขการสั่งซื้อ <strong>#16471345</strong></h4>
+                <div class="form-group col-sm-8" style="padding-left: 0px;">
+                    <label for="comment">ที่อยู่ในการจัดส่ง</label>
+                    <textarea class="form-control" rows="5"  id="comment"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="usr">เบอร์โทร</label>
+                    <input type="text" class="form-control col-sm-3" id="usr">
+                </div>
+                ช่องทางชำระ
+                <div class="check-box">
+                        <!-- style="margin-left:20px;margin-top:16px;" -->
+                    <!-- <label class="form-check-label" for="radio1" style="margin-left:20px;">
+                        <input type="radio" class="form-check-input" id="radio1" name="gender"
+                            value="female">เก็บเงินปลายทาง
+                    </label> -->
+                    <!-- <label class="form-check-label" style="margin-left:40px;" for="radio1"> -->
+                        <!-- <div style="display: inline-block;">
+                        
+                        </div> -->
+                        <div class="input-group mb-auto col-sm-3" style="margin-top:10px;padding-right: 0px;
+                        padding-left: 0px">
+                            <select class="custom-select" id="inputGroupSelect01">
+                              <option selected>เลือกธนาคาร...</option>
+                              <option value="1">ธนาคารกรุงไทย</option>
+                              <option value="2">ธนาคารกสิกร</option>
+                              <option value="3">ธนาคารออมสิน</option>
+                              <option value="4">ธนาคารกรุงเทพ</option>
+
+                            </select>
+                          </div>
+                        <!-- <input type="radio" class="form-check-input" id="radio2" name="gender" value="male" checked> โอนผ่านธนาคาร -->
+                    </label>
+                </div>
+
+                <!-- <div class="custom-file col-sm-3" >
+                        <input type="file" class="custom-file-input" id="customFileLangHTML">
+                        <label class="custom-file-label" for="customFileLangHTML"
+                            data-browse="อัพโหลด" ></label>
+                    </div> -->
+                    <div class="form-group col-sm-2"style="padding-left: 0px;
+                    padding-right: 0px;">
+                            <label for="timeup">เวลาที่โอน</label><br/>
+                              <input class="form-control" type="time" value="13:45:00" id="example-time-input">
+                          </div>
+
+                    <div class="custom-file  col-sm-3">
+                            <label for="usr">อัพโหลดสลิป</label>
+                            <input type="file" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                          </div>
+
+                <div class="button-2" style="margin-top:20px;">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">ยืนยัน</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">ออก</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1 ">
+
+        </div>
+    </div>
+    </div>
+    <!-- ส่วนการเเก้ไข -->
+    <!-- The Modal -->
+    <div class="modal fade" id="editModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">แก้ไขสมาชิก</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="usr">ชื่อ</label>
+                        <input type="text" class="form-control" id="usr">
+                    </div>
+                    <div class="form-group">
+                        <label for="usr">นามสกุล</label>
+                        <input type="text" class="form-control" id="usr">
+                    </div>
+                    <div class="form-group">
+                        <label for="usr">อีเมลล์</label>
+                        <input type="email" class="form-control" id="usr">
+                    </div>
+                    <div class="form-group">
+                        <label for="usr">รหัสผ่าน</label>
+                        <input type="password" class="form-control" id="usr">
+                    </div>
+                    <label for="date" style="margin-top:9px;">วัน/เดือน/ปี เกิด</label>
+                    <input id="inputdatepicker" class="datepicker form-control" name="birth"
+                        data-date-format="mm/dd/yyyy">
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    </div>
+    </div>
+    </div>
+
+
+    <input type="hidden" name="hidden" id="hidden" value="1">
+
+
+    <script src="main.js"></script>
+
+
+    <script>
+        
+        $(document).on('click', '.myshow .dropdown-menu', function (e) {
+            e.stopPropagation();
+        });
+
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                format: 'dd/mm/yyyy',
+                todayBtn: true,
+                language: 'th',
+                thaiyear: true //Set เป็นปี พ.ศ.
+            }).datepicker("setDate", "0"); //กำหนดเป็นวันปัจุบัน
+        });
+    </script>
+    <script>
+            // Add the following code if you want the name of the file appear on select
+            $(".custom-file-input").on("change", function() {
+              var fileName = $(this).val().split("\\").pop();
+              $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+            </script>
+
+</body>
+
+</html>

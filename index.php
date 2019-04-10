@@ -27,7 +27,39 @@
 <?php  include('./include/scriptAfterHead.php') ?>
 
 <body>
+    <?php  //include('./include/navBar.php') ?>
     <?php  include('./include/navBar.php') ?>
+
+    <!-- navBar_Admin.php -->
+    <!-- The Modal -->
+    <div class="modal" id="resetPW">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">กู้คืนรหัสผ่าน</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+
+                                                <!-- Modal body -->
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label for="usr"> กรุณากรอกอีเมลล์ของคุณ ระบบจะส่งรหัสผ่านไห้ทางอีเมล</label>
+                                                        <input type="text" class="form-control" id="usr" placeholder="example@gmail.com">
+                                                    </div>
+
+                                                    <!-- Modal footer -->
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-success" data-dismiss="modal">ดำเนินการ</button>
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">ออก</button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-1"></div>
