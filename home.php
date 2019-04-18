@@ -1,12 +1,6 @@
 <?php
 session_start();
 include "db.php";
-
-// $_SESSION["Userlevel"]='';
-if (isset($_SESSION["Userlevel"])) {  //ถ้าเป็น member ให้กระโดดไปหน้า user_page.php
-    Header("Location: home.php");
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +30,8 @@ if (isset($_SESSION["Userlevel"])) {  //ถ้าเป็น member ให้�
 <?php include('./include/scriptAfterHead.php') ?>
 
 <body>
-    <?php include "./include/navBar.php"; ?>
+    <?php //echo $_SESSION["Userlevel"];?>
+    <?php include "./include/navBar_Admin.php"; ?>
     <!-- navBar_Admin.php -->
     <!-- The Modal -->
     <div class="modal" id="resetPW">
@@ -75,12 +70,11 @@ if (isset($_SESSION["Userlevel"])) {  //ถ้าเป็น member ให้�
                 <ul id="get_brand" style="padding-left: 0px;"></ul>
             </div>
             <div class="col-md-8">
-                <!-- <div class="row">
-                    <div class="col-md-12" >
-                        <div class="alert alert-success" id="product_msg" role="alert">
-                        </div>
+            <div class="row">
+                    <div class="col-md-12" id="product_msg">
+                        
                     </div>
-                </div> -->
+                </div>
                 <div class="card-columns" style="margin-top:16px;">
                     <div id="geter_product">
 
@@ -112,7 +106,7 @@ if (isset($_SESSION["Userlevel"])) {  //ถ้าเป็น member ให้�
             </div>
         </div>
     </div>
-    <input type="hidden" name="hidden" id="hidden" value="1">
+    
 
 
     <script src="main.js"></script>
@@ -133,6 +127,13 @@ if (isset($_SESSION["Userlevel"])) {  //ถ้าเป็น member ให้�
         });
     </script>
 
+    <script>
+            $(document).on('click', '.product', function() {
+            setInterval(function(){ 
+                location.reload(); 
+            }, 3000);
+        });
+    </script>
 </body>
 
 </html>

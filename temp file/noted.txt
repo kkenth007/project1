@@ -38,3 +38,35 @@ if(isset($_POST['cat_id'])){
 JOIN TABLE 
 SELECT product_id ,product_keywords,product_price,product_stock,product_title,product_image, product_brand, brand_title FROM 
 products INNER JOIN brand ON product_brand = brand_id where product_brand ORDER BY product_id ASC
+
+
+
+
+
+
+
+if (isset($_POST['submit'])) {
+    if (isset($_SESSION["shoping_cart"])) {
+        $item_array_id = array_column($_SESSION["shoping_cart"], "item_id");
+        if (!in_array($_GET['code'], $item_array_id)) {
+            $count = count($_SESSION["shopping_cart"]);
+            $item_array = array(
+                'item_id' => $_GET["code"],
+                'item_name' => $row["product_title"],
+                'item_price' => $row["product_price"],
+                'item_quantity' => $_POST['quantity']
+            );
+            $_SESSION["shoping_cart"][$count] = $item_array;
+        } else {
+            echo "<script>alert('สินค้าถูกเพิ่มเรียบร้อย')</script>";
+            echo "<script>window.location='index.php'</script>";
+        }
+    } else {
+        $item_array = array(
+            'item_id' => $_GET["code"],
+            'item_name' => $row["product_title"],
+            'item_price' => $row["product_price"],
+            'item_quantity' => $_POST['quantity']
+        );
+    }
+}

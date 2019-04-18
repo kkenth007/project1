@@ -1,3 +1,8 @@
+<?php 
+session_start();
+if($_SESSION["Userlevel"]=="A"){
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -367,3 +372,10 @@
 </body>
 
 </html>
+<?php  }else{ ?>
+
+<?php 
+unset($_SESSION['Userlevel']);
+session_destroy();
+header("Location: ../index.php ");	
+} ?>

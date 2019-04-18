@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="./asset/css/bootstrap.min.css">
     <link rel="stylesheet" href="./asset/css/main1.css">
     <link rel='shortcut icon' type='image/x-icon' href='./asset/img/logo.ico' />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
-        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <script src="./asset/js/jquery-3.3.1.min.js"></script>
     <script src="./asset/js/popper.min.js"></script>
     <script src="./asset/js/bootstrap.min.js"></script>
@@ -26,46 +25,6 @@
             width: 115px;
             margin: 0px auto;
         }
-
-        .mini-table {
-            /* margin-right: 100px; */
-            position: absolute;
-            /* top:20; */
-            /* left:55%;
-            font-size: 22px;
-            line-height: 28px; */
-        }
-
-        .table-mini {
-            margin-left: 250px;
-            position: absolute;
-            /* top:20;  */
-            /* left:55%; */
-
-        }
-
-        .payBtn {
-            margin-left: 390px;
-        }
-
-        span.list-price {
-            width: 200px;
-        }
-        .list-price{
-            font-size: 20px;
-            line-height: 28px;
-        }
-        span.list-price {
-            width: 300px !important;
-        }
-
-        span.price {
-            font-weight: bold;
-        }
-
-        .price {
-            text-align: right;
-        }
     </style>
 
 </head>
@@ -73,7 +32,7 @@
 <?php include('./include/scriptAfterHead.php') ?>
 
 <body>
-    <?php include('./include/navBar.php') ?>
+    <?php include('./include/navBar_member.php') ?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-1"></div>
@@ -111,16 +70,13 @@
                                     <div class="center">
                                         <div class="input-group">
                                             <span class="input-group-btn">
-                                                <button type="button" class="btn btn-danger btn-number"
-                                                    disabled="disabled" data-type="minus" data-field="quant[1]">
+                                                <button type="button" class="btn btn-danger btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
                                                     <i class="fa fa-minus"></i>
                                                 </button>
                                             </span>
-                                            <input type="text" name="quant[1]" class="form-control input-number"
-                                                value="1" min="1" max="30">
+                                            <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="30">
                                             <span class="input-group-btn">
-                                                <button type="button" class="btn btn-success btn-number"
-                                                    data-type="plus" data-field="quant[1]">
+                                                <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[1]">
                                                     <i class="fa fa-plus"></i>
                                                 </button>
                                             </span>
@@ -139,16 +95,13 @@
                                     <div class="center">
                                         <div class="input-group">
                                             <span class="input-group-btn">
-                                                <button type="button" class="btn btn-danger btn-number"
-                                                    disabled="disabled" data-type="minus" data-field="quant[2]">
+                                                <button type="button" class="btn btn-danger btn-number" disabled="disabled" data-type="minus" data-field="quant[2]">
                                                     <i class="fa fa-minus"></i>
                                                 </button>
                                             </span>
-                                            <input type="text" name="quant[2]" class="form-control input-number"
-                                                value="1" min="1" max="30">
+                                            <input type="text" name="quant[2]" class="form-control input-number" value="1" min="1" max="30">
                                             <span class="input-group-btn">
-                                                <button type="button" class="btn btn-success btn-number"
-                                                    data-type="plus" data-field="quant[2]">
+                                                <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
                                                     <i class="fa fa-plus"></i>
                                                 </button>
                                             </span>
@@ -168,16 +121,13 @@
                                     <div class="center">
                                         <div class="input-group">
                                             <span class="input-group-btn">
-                                                <button type="button" class="btn btn-danger btn-number"
-                                                    disabled="disabled" data-type="minus" data-field="quant[3]">
+                                                <button type="button" class="btn btn-danger btn-number" disabled="disabled" data-type="minus" data-field="quant[3]">
                                                     <i class="fa fa-minus"></i>
                                                 </button>
                                             </span>
-                                            <input type="text" name="quant[3]" class="form-control input-number"
-                                                value="1" min="1" max="30">
+                                            <input type="text" name="quant[3]" class="form-control input-number" value="1" min="1" max="30">
                                             <span class="input-group-btn">
-                                                <button type="button" class="btn btn-success btn-number"
-                                                    data-type="plus" data-field="quant[3]">
+                                                <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[3]">
                                                     <i class="fa fa-plus"></i>
                                                 </button>
                                             </span>
@@ -187,74 +137,14 @@
                                 <td>162000</td>
                                 <td><button class="btn btn-danger">ลบสินค้า</button></td>
                             </tr>
-
                         </tbody>
                     </table>
                 </div>
 
-
-                <div class="row">
-                    <table class="table-borderless">
-                        <tbody class="text-center">
-                            <tr>
-                                <div class="div" style="width:670px;">
-
-                                </div>
-                                <td colspan="6" style="text-align:left;">
-                                    <div>
-                                        <span class="list-price" style="width:80%;">ภาษีมูลค่าเพิ่ม 7%
-                                            <div class="div" style="width:130px;display: inline-block;"></div>
-                                        </span>
-                                        <span class="price">4250.00 ฿</span>
-                                    </div>
-                                    <div>
-                                        <span class="list-price" style="width:80%;">ค่าจัดส่งพัสดุ
-                                            <div class="div" style="width:173px;display: inline-block;"></div>
-                                        </span>
-                                        <span class="price">4250.00 ฿</span>
-                                    </div>
-                                    <div>
-                                        <span class="list-price" style="width:80%;">รวมทั้งหมด
-                                            <div class="div" style="width:187px;display: inline-block;"></div>
-                                        </span>
-                                        <span class="price">98751.00 ฿</span>
-                                    </div>
-                                    <div>
-                                        <span class="list-price" style="width:80%;">
-                                        </span>
-                                        <span> <button class="btn btn-success payBtn"
-                                                style="margin-top:20px">ชำระเงิน</button></span>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="clear" style="clear:both"></div>
-                <!-- <div class="row mini-table">
-                    <table >
-                        <tr>
-                            <td style="width:400px">ภาษีมูลค่าเพิ่ม 7% คิดเป็นเงิน </td>
-                            <td>4250.00 ฿</td>
-                        </tr>
-                        <tr>
-                            <td>ค่าจัดส่งพัสดุ</td>
-                            <td>4250.00 ฿</td>
-                        </tr>
-                        <tr>
-                            <td>รวมทั้งหมด</td>
-                            <td>98751.00 ฿</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><button class="btn btn-success payBtn" style="margin-top:20px">ชำระเงิน</button></td>
-                        </tr>
-                    </table> -->
             </div>
-
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati ad doloribus, consectetur tempora delectus, debitis enim quae eaque, ducimus voluptatibus minima optio repudiandae eius reiciendis? Debitis, harum eveniet. Sit, minima.</p>
         </div>
-        <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati ad doloribus, consectetur tempora delectus, debitis enim quae eaque, ducimus voluptatibus minima optio repudiandae eius reiciendis? Debitis, harum eveniet. Sit, minima.</p> -->
     </div>
-   
     <div class="col-md-1 ">
 
     </div>
@@ -267,11 +157,11 @@
 
 
     <script>
-        $(document).on('click', '.myshow .dropdown-menu', function (e) {
+        $(document).on('click', '.myshow .dropdown-menu', function(e) {
             e.stopPropagation();
         });
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('.datepicker').datepicker({
                 format: 'dd/mm/yyyy',
                 todayBtn: true,
@@ -281,11 +171,11 @@
         });
     </script>
     <script type='text/javascript'>
-        $(document).ready(function () {
+        $(document).ready(function() {
 
             //plugin bootstrap minus and plus
             //http://jsfiddle.net/laelitenetwork/puJ6G/
-            $('.btn-number').click(function (e) {
+            $('.btn-number').click(function(e) {
                 e.preventDefault();
 
                 fieldName = $(this).attr('data-field');
@@ -316,10 +206,10 @@
                     input.val(0);
                 }
             });
-            $('.input-number').focusin(function () {
+            $('.input-number').focusin(function() {
                 $(this).data('oldValue', $(this).val());
             });
-            $('.input-number').change(function () {
+            $('.input-number').change(function() {
 
                 minValue = parseInt($(this).attr('min'));
                 maxValue = parseInt($(this).attr('max'));
@@ -327,8 +217,7 @@
 
                 name = $(this).attr('name');
                 if (valueCurrent >= minValue) {
-                    $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr(
-                        'disabled')
+                    $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled')
                 } else {
                     alert('Sorry, the minimum value was reached');
                     $(this).val($(this).data('oldValue'));
@@ -342,7 +231,7 @@
 
 
             });
-            $(".input-number").keydown(function (e) {
+            $(".input-number").keydown(function(e) {
                 // Allow: backspace, delete, tab, escape, enter and .
                 if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
                     // Allow: Ctrl+A
@@ -353,15 +242,34 @@
                     return;
                 }
                 // Ensure that it is a number and stop the keypress
-                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode >
-                        105)) {
+                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
                     e.preventDefault();
                 }
             });
 
         });
     </script>
+        <script>
+        $(document).on('click', '.myshow .dropdown-menu', function(e) {
+            e.stopPropagation();
+        });
 
+        $(document).ready(function() {
+            $('.datepicker').datepicker({
+                format: 'dd/mm/yyyy',
+                todayBtn: true,
+                language: 'th',
+                thaiyear: true //Set เป็นปี พ.ศ.
+            }).datepicker("setDate", "0"); //กำหนดเป็นวันปัจุบัน
+        });
+
+        $(document).on('click', '.product', function() {
+            setInterval(function(){ 
+                location.reload(); 
+            }, 2000);
+        });
+    </script>
+    <script src="main.js"></script>
 </body>
 
-</html>
+</html> 

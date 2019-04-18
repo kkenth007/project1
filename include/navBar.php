@@ -24,7 +24,7 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown show myshow">
+            <!-- <li class="nav-item dropdown show myshow">
                 <a class="nav-link dropdown" style="padding-right: 20px;" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fas fa-shopping-cart"></i> Cart <span class="badge badge-light">0</span></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown03">
                     <div style="width:500px;padding: 16px;">
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-            </li>
+            </li> -->
 
             <li class="nav-item dropdown show myshow">
                 <a class="nav-link dropdown" style="padding-right: 20px;" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false"><i class="fas fa-user"></i>
