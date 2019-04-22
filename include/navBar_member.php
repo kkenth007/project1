@@ -60,7 +60,7 @@
                             <div class="card-body">
                                 <div class="pop-list"><img src="<?php echo $result['product_image']; ?>"
                                         class="img-thumb">
-                                    <div class="d-inline-block" id="name-pro">
+                                    <div class="d-inline-block name-pro">
                                         <ul class="text-left">
                                             <li><?php echo $result['product_title']; ?></li>
                                         </ul>
@@ -68,8 +68,8 @@
                                     <div id="pro_price"><label class="text-primary">฿
                                             <?php echo $result['product_price']; ?></label></div>
                                 </div>
-                                <div class="pop-list"><img src="https://i.imgur.com/jC0y6Dm.jpg" class="img-thumb">
-                                    <div class="d-inline-block" id="name-pro">
+                                <div class="pop-list"><img src="<?php echo $result['product_image']; ?>" class="img-thumb">
+                                    <div class="d-inline-block name-pro" >
                                         <ul class="text-left">
                                             <li>Samsung S10</li>
                                         </ul>

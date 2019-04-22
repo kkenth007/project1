@@ -1,7 +1,7 @@
 <?php
-$session_start();
+session_start();
 if (isset($_SESSION["Userlevel"])) {  //ถ้าเป็น member ให้กระโดดไปหน้า user_page.php
-    Header("Location: m_order_detail.php");
+    Header("Location: m_manage_order.php");
 }
 
 ?>

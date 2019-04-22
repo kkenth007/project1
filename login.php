@@ -17,6 +17,7 @@ session_start();
                       $_SESSION["UserID"] = $row["user_id"];
                       $_SESSION["User"] = $row["fname"]." ".$row["lname"];
                       $_SESSION["Userlevel"] = $row["Userlevel"];
+                      
 
                       if($_SESSION["Userlevel"]=="A"){ //ถ้าเป็น admin ให้กระโดดไปหน้า admin_page.php
                         Header("Location: ./admin/manageproduct.php");

@@ -85,22 +85,6 @@ if (isset($_SESSION["Userlevel"])) {  //ถ้าเป็น member ให้�
                     <div id="geter_product">
 
                     </div>
-                    <!-- <div class="card" >
-                        <img class="card-img-top" src="asset/products_img/06300fd8c70c731b.jpg">
-                        <div class="card-body">
-                            <p class="card-text">⚡️โปร2.2⚡️เสื้อกันหนาว [สารพัดกัน] กันลม กันแดด กันร้อน ฮู้ดแขนยาว
-                                Hoodie [F01]</p>
-                        </div>
-                        <div class="tab-price">
-                            <div class="old-price">฿230</div>
-                            <div class="new-price">฿180</div>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-primary btn-sm"><i class="fas fa-cart-plus"></i></button>
-                            <button class="btn btn-outline-primary btn-sm"><i class="fas fa-list-ul"></i>
-                                รายละเอียด</button>
-                        </div>
-                    </div> -->
                     <?php
                     ?>
 

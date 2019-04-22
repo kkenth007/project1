@@ -32,8 +32,8 @@ if(isset($_POST["id"])){
                             <div class='new-price'>฿$pro_price</div>
                         </div>
                         <div class='card-footer'>
-                            <input type='number' class='product-quantity form-control' name='quantity' min='1' max='100' value='1' size='2' />
-                            <br/>
+                        <!--<input type='number' class='product-quantity form-control' name='quantity' min='1' max='100' value='1' size='2' />
+                            <br/> -->
                             <!--<button class='btn btn-primary btn-sm'><i class='fas fa-cart-plus'></i></button> -->
                             <button class='btn btn-primary btn-md product' type='submit' name='add_product' pid='$pro_id' value='add_product' class='btnAddAction'><i class='fas fa-cart-plus'></i>  Add to Cart</button>
                             <button class='btn btn-outline-primary btn-md'><a href='DetailProduct.php?item_id={$pro_id}';>

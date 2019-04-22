@@ -38,28 +38,7 @@ $bage = mysqli_num_rows($run_query);
                     <div style="width:300px;padding: 16px;">
                         <div class="panel panel-success">
                             <div class="card-body">
-                                <!-- <div class="pop-list"><img src="https://i.imgur.com/lSym8Y9.jpg" class="img-thumb">
-                                    <div class="d-inline-block" id="name-pro">
-                                        <ul class="text-left">
-                                            <li>สมาร์ทวอทช์ Versa รุ่น S12958 สีม่วง</li>
-                                        </ul>
-                                    </div>
-                                    <div id="pro_price"><label class="text-primary">$60.00</label></div>
-                                </div>
-                                <div class="pop-list"><img src="https://i.imgur.com/jC0y6Dm.jpg" class="img-thumb">
-                                    <div class="d-inline-block" id="name-pro">
-                                        <ul class="text-left">
-                                            <li>Samsung S10</li>
-                                        </ul>
-                                    </div>
-                                    <div id="pro_price"><label class="text-primary">$60.00</label></div>
-                                </div> -->
                                 <?php
-
-                                // $row = mysqli_fetch_array($run_query);
-                                // $id = $row['product_id'];
-
-                                // $total_price = $pro_price * $qty;
                                 $total = 0;
                                 while ($row = mysqli_fetch_assoc($run_query)) {
                                     $pro_name = $row['product_title'];
@@ -70,7 +49,7 @@ $bage = mysqli_num_rows($run_query);
                                     $total += $amoung_price;
                                     ?>
                                     <div class="pop-list"><img src="<?php echo $pro_img; ?>" class="img-thumb">
-                                        <div class="d-inline-block" id="name-pro">
+                                        <div class="d-inline-block name-pro">
                                             <ul class="text-left">
                                                 <li><?php echo $pro_name; ?></li>
                                             </ul>

@@ -72,32 +72,13 @@ include "db.php";
             <div class="col-md-8">
             <div class="row">
                     <div class="col-md-12" id="product_msg">
-                        
+
                     </div>
                 </div>
                 <div class="card-columns" style="margin-top:16px;">
                     <div id="geter_product">
 
                     </div>
-                    <!-- <div class="card" >
-                        <img class="card-img-top" src="asset/products_img/06300fd8c70c731b.jpg">
-                        <div class="card-body">
-                            <p class="card-text">⚡️โปร2.2⚡️เสื้อกันหนาว [สารพัดกัน] กันลม กันแดด กันร้อน ฮู้ดแขนยาว
-                                Hoodie [F01]</p>
-                        </div>
-                        <div class="tab-price">
-                            <div class="old-price">฿230</div>
-                            <div class="new-price">฿180</div>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-primary btn-sm"><i class="fas fa-cart-plus"></i></button>
-                            <button class="btn btn-outline-primary btn-sm"><i class="fas fa-list-ul"></i>
-                                รายละเอียด</button>
-                        </div>
-                    </div> -->
-                    <?php
-                    ?>
-
 
                 </div>
             </div>
@@ -106,12 +87,8 @@ include "db.php";
             </div>
         </div>
     </div>
-    
-
 
     <script src="main.js"></script>
-
-
     <script>
         $(document).on('click', '.myshow .dropdown-menu', function(e) {
             e.stopPropagation();
@@ -131,7 +108,7 @@ include "db.php";
             $(document).on('click', '.product', function() {
             setInterval(function(){ 
                 location.reload(); 
-            }, 3000);
+            }, 2000);
         });
     </script>
 </body>
