@@ -2,18 +2,22 @@
 session_start();
 include "db.php";
 $id = $_GET['item_id'];
-echo $_SESSION["Userlevel"];
 
-// $_SESSION["Userlevel"]='';
-if ($_SESSION["Userlevel"] == "M") {  //ถ้าเป็น member ให้กระโดดไปหน้า user_page.php
-    Header("Location: m_detail_product.php?item_id=$id");
-}else{
-    // Header("Location: index.php");
+// echo $_SESSION["Userlevel"];
+if (isset($_SESSION["Userlevel"])) {
+    // $_SESSION["Userlevel"]='';
+    if ($_SESSION["Userlevel"] == "M") {  //ถ้าเป็น member ให้กระโดดไปหน้า user_page.php
+        Header("Location: m_detail_product.php?item_id=$id");
+    } else {
+        // Header("Location: index.php");
+    }
 }
+
+
 // $queryProduct = "SELECT * FROM products where product_id = '$id'";
 $queryProduct = "SELECT product_id ,product_price,product_stock,product_title,product_image, product_brand, brand_title,product_desc,product_stock,product_unit FROM products INNER JOIN brand ON product_brand = brand_id where product_id='$id'";
 
-$detailProduct = mysqli_query($con,$queryProduct);
+$detailProduct = mysqli_query($con, $queryProduct);
 $row = mysqli_fetch_array($detailProduct);
 
 ?>
@@ -91,15 +95,21 @@ $row = mysqli_fetch_array($detailProduct);
 <?php include('./include/scriptAfterHead.php') ?>
 
 <body>
-<?php
-if ($_SESSION["Userlevel"] == "M") {  //ถ้าเป็น member ให้กระโดดไปหน้า user_page.php
-    include "./include/navBar_Admin.php";
-}else{
-    include('./include/navBar.php');
-}
+    <?php
+    if (isset($_SESSION["Userlevel"])) {
+        if ($_SESSION["Userlevel"] == "M") {  //ถ้าเป็น member ให้กระโดดไปหน้า user_page.php
+            include "./include/navBar_Admin.php";
+        } else {
+            include('./include/navBar.php');
+        }
+    }else {
+        include('./include/navBar.php');
+    }
 
-?>
-    <?php //include('./include/navBar.php') ?>
+
+    ?>
+    <?php
+    ?>
 
     <div class="container-fluid">
         <div class="row">
@@ -131,7 +141,7 @@ if ($_SESSION["Userlevel"] == "M") {  //ถ้าเป็น member ให้�
                                 </div>
                                 <div class="entry-price" style="float: left;">
                                     <div class="inline-price">
-                                        ราคา <span><?php echo number_format($row['product_price'],2); ?></span> บาท
+                                        ราคา <span><?php echo number_format($row['product_price'], 2); ?></span> บาท
                                     </div>
                                     <div style="display:block">
                                         <span style="color:red; font-weight: bold; font-size: 14px;">*ราคารวมภาษีมูลค่าเพิ่มแล้ว*</span>

@@ -5,6 +5,9 @@ $user_id = $_SESSION["UserID"];
 $sql = "SELECT * FROM carts WHERE user_id='$user_id'";
 $result = mysqli_query($con, $sql);
 
+// if(isset($_SESSION["number_pay"])){
+//     unset($_SESSION["number_pay"]);
+// }
 
 ?>
 <!DOCTYPE html>
@@ -154,10 +157,10 @@ $result = mysqli_query($con, $sql);
                                         <span class="price">4250.00 ฿</span>
                                     </div> -->
                                                 <div>
-                                                    
+
                                                     <h4><b>ค่าจัดส่งพัสดุ : ฿ <span id="sum-product"><?php echo $shipping; ?></span></b><span class="mt-3">
-                                                        <a href="#" data-toggle="tooltip" title="ซื้อมากกว่า 500 บาท ฟรีค่าจัดส่ง "><i class="far fa-question-circle"></i></a>
-                                                    </span></h4>
+                                                            <a href="#" data-toggle="tooltip" title="ซื้อมากกว่า 500 บาท ฟรีค่าจัดส่ง "><i class="far fa-question-circle"></i></a>
+                                                        </span></h4>
                                                 </div>
                                                 <div>
                                                     <h4><b>รวมทั้งหมด &nbsp;&nbsp;&nbsp;: ฿ <span id="sum-product">
@@ -167,15 +170,15 @@ $result = mysqli_query($con, $sql);
                                                     <span class="list-price" style="width:80%;">
                                                     </span>
                                                     <!-- <span> <button class="btn btn-success payBtn" style="margin-top:20px">ชำระเงิน</button></span> -->
-                <button class='btn btn-success btn-lg pull-right' id='checkout_btn' data-toggle="modal" data-target="#myModal">ชำระเงิน</button>
-                                                
+                                                    <button class='btn btn-success btn-lg pull-right' id='checkout_btn' data-toggle="modal" data-target="#myModal"><a href='m_pay_order.php'>ชำระเงิน</a></button>
+
                                                 </div>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <!-- <h4><b>รวมทั้งหมด : ฿ <span id="sum-product"><?php 
+                            <!-- <h4><b>รวมทั้งหมด : ฿ <span id="sum-product"><?php
                                                                                 ?></span></b></h4> -->
                         </div>
                     </div>
@@ -220,11 +223,11 @@ $result = mysqli_query($con, $sql);
             }).datepicker("setDate", "0"); //กำหนดเป็นวันปัจุบัน
         });
     </script>
-                <script>
-                $(document).ready(function() {
-                    $('[data-toggle="tooltip"]').tooltip();
-                });
-            </script>
+    <script>
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 </body>
 
 </html>

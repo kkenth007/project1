@@ -70,3 +70,27 @@ if (isset($_POST['submit'])) {
         );
     }
 }
+
+
+
+
+
+
+
+
+if (isset($_SESSION["number_pay"])) {
+    $number_pay = $_SESSION["number_pay"];
+} else {
+    $_SESSION["number_pay"] = rand(1264654, 99999999);
+}
+
+
+
+$sql = "INSERT INTO payment_store (ref_user_id,ref_cart_id,pay_bill, ref_bank_id, ) VALUES ('$user_id','$numpay', '$paybill', '$idbank')";
+$row = mysqli_query($con,$sql);
+echo $row;
+
+//copy table 
+INSERT INTO order_store (p_id, user_id,qty,price)
+SELECT p_id, user_id,qty,price
+FROM carts WHERE user_id=16;

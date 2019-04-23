@@ -1,6 +1,11 @@
 <?php
 session_start();
 include "db.php";
+if (isset($_SESSION["number_pay"])) {
+    $_SESSION["number_pay"] = $_SESSION["number_pay"];
+} else {
+    $_SESSION["number_pay"] = rand(1264654, 99999999);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

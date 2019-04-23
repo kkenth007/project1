@@ -176,9 +176,7 @@ $(document).ready(function () {
         event.preventDefault();
         var pid = $(this).attr("update_id");
         var Quantity = $("#qty-" + pid).val();
-         var total = $('#total-' + pid).val();
-        //  alert(total);
-        // alert(pid);
+        var total = $('#total-' + pid).val();
         $.ajax({
             url: "action.php",
             method: "POST",
@@ -192,4 +190,57 @@ $(document).ready(function () {
             }
         })
     });
+
+    $(document).ready(function() {
+
+        $("#but_upload").click(function() {
+
+            var fd = new FormData();
+
+            var files = $('#file')[0].files[0];
+
+            fd.append('file', files);
+
+            $.ajax({
+                url: 'upload.php',
+                type: 'post',
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    if (response != 0) {
+                        $("#img").attr("src", response);
+                        $('.preview img').show();
+                    } else {
+                        alert('File not uploaded');
+                    }
+                }
+            });
+        });
+    });
+
+    // processSave
+    $("body").delegate(".processSave", "click", function (event) {
+        event.preventDefault();
+        // var pid = $(this).attr("update_id");
+        var adress = $('#sendAdress').val();
+        var phone = $('#num_phone').val();
+        var bank = $('#selectBank').val();
+        
+        // console.log(adress,phone);
+        // console.log(bank);
+        $.ajax({
+            url: "action.php",
+            method: "POST",
+            data: {payMoney:1,adress:adress,phone:phone,bank:bank},
+            success: function(data){
+                $('#product_msg').html(data);
+                setTimeout(function(){ 
+                    location.replace(window.location.origin+"/project1/sys.php");
+                }, 2000)
+                
+            }
+        })
+    });
+
 });
