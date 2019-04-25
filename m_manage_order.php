@@ -2,9 +2,10 @@
 session_start();
 include "db.php";
 $user_id = $_SESSION["UserID"];
-$sql = "SELECT * FROM carts WHERE user_id='$user_id'";
+$sql = "SELECT * FROM carts INNER JOIN products ON  carts.p_id = products.product_id WHERE user_id='$user_id'";
 $result = mysqli_query($con, $sql);
-
+// $dsa = mysqli_fetch_array($result);
+// print_r($dsa);
 // if(isset($_SESSION["number_pay"])){
 //     unset($_SESSION["number_pay"]);
 // }
@@ -97,11 +98,12 @@ $result = mysqli_query($con, $sql);
                     <div class="panel-body"></div>
                     <div class="row">
                         <div class="col-md-2"><b>Action</b></div>
-                        <div class="col-md-2"><b>Product Image</b></div>
-                        <div class="col-md-2"><b>Product Name</b></div>
-                        <div class="col-md-2"><b>Product Price</b></div>
-                        <div class="col-md-2"><b>Quantity</b></div>
-                        <div class="col-md-2"><b>Price in ฿</b></div>
+                        <div class="col-md-1"><b>รูป</b></div>
+                        <div class="col-md-1"><b>มีในคลัง</b></div>
+                        <div class="col-md-2"><b>ชื่อสินค้า</b></div>
+                        <div class="col-md-2"><b>ราคาสินค้า</b></div>
+                        <div class="col-md-2"><b>จำนวน</b></div>
+                        <div class="col-md-2"><b>ราคาทั้งหมด ฿</b></div>
                     </div>
                     <br>
                     <!-- <div class="cart_checkout"> -->
@@ -110,14 +112,15 @@ $result = mysqli_query($con, $sql);
                         <div id='cartdetail'>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <a href="#" class="btn btn-danger remove" remove_id='<?php echo $row['p_id']; ?>'><i class="fas fa-trash-alt">ลบ</i></a>
-                                    <a href="#" class="btn btn-success update" update_id='<?php echo $row['p_id']; ?>'><i class="fas fa-cart-arrow-down">อัพเดท</i></i></a>
+                                    <a href="#" class="btn btn-danger remove btn-block" remove_id='<?php echo $row['p_id']; ?>'><i class="fas fa-trash-alt"> ลบ</i></a>
+                                    <a href="#" class="btn btn-success update btn-block" update_id='<?php echo $row['p_id']; ?>'><i class="fas fa-cart-arrow-down"> อัพเดท</i></i></a>
                                 </div>
-                                <div class="col-md-2"><img src="<?php echo $row['product_image'] ?>" width="80px" height="80px"></div>
+                                <div class="col-md-1"><img src="<?php echo $row['product_image'] ?>" width="80px" height="80px"></div>
+                                <div class="col-md-1"><?php echo $row['product_stock']  ?></div>
                                 <div class="col-md-2" class="title-hide"><?php echo substr($row['product_title'], 0,); ?></div>
                                 <div class="col-md-2"><input class="form-control price" type="text" size="10px" pid='<?php echo $row['p_id']; ?>' id='price-<?php echo $row['p_id']; ?>' value='<?php echo $row['price']; ?>' disabled></div>
-                                <div class="col-md-2"><input class="form-control qty" type="number" min='1' max="20" size="10px" pid='<?php echo $row['p_id']; ?>' id='qty-<?php echo $row['p_id']; ?>' value='<?php echo $row['qty']; ?>'></div>
-                                <div class="col-md-2"><input class="form-control total" type="text" size="10px" pid='<?php echo $row['p_id']; ?>' id='total-<?php echo $row['p_id']; ?>' value='<?php echo number_format($row['total_amount'], 2); ?>' disabled></div>
+                                <div class="col-md-2"><input class="form-control qty" type="number" min='1' max="<?php echo $row['product_stock']  ?>" size="10px" pid='<?php echo $row['p_id']; ?>' id='qty-<?php echo $row['p_id']; ?>' value='<?php echo $row['qty']; ?>'></div>
+                                <div class="col-md-2"><input class="form-control total" type="text" size="10px" pid='<?php echo $row['p_id']; ?>' id='total-<?php echo $row['p_id']; ?>' value='<?php echo number_format($row['total_amount'], 2); ?>' disabled> </div>
                             </div>
                         </div>
                     <?php } ?>
@@ -170,7 +173,7 @@ $result = mysqli_query($con, $sql);
                                                     <span class="list-price" style="width:80%;">
                                                     </span>
                                                     <!-- <span> <button class="btn btn-success payBtn" style="margin-top:20px">ชำระเงิน</button></span> -->
-                                                    <button class='btn btn-success btn-lg pull-right' id='checkout_btn' data-toggle="modal" data-target="#myModal"><a href='m_pay_order.php'>ชำระเงิน</a></button>
+                                                    <a href='m_pay_order.php'><button class='btn btn-outline-success btn-lg pull-right' id='checkout_btn' data-toggle="modal" data-target="#myModal">ชำระเงิน</button></a>
 
                                                 </div>
                                             </td>

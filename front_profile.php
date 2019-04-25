@@ -4,13 +4,20 @@ include "db.php";
 $id = $_SESSION["UserID"];
 $sql = "SELECT * FROM user_info where user_id='$id'";
 $info = mysqli_query($con, $sql);
-$row = mysqli_fetch_array($info);
-print_r($row);
+if (mysqli_num_rows($info) > 0) {
+    $row = mysqli_fetch_array($info);
+    $fname = $row["fname"];
+    $lname= $row["lname"];
+    $email= $row["email"];
+    $phone= $row["phone"];
+    $adress1= $row["adress1"];
+    $adress2= $row["adress2"];
+}
 
 function changeBack($dateBorn)
 {
     $temp = explode("-", $dateBorn);
-    $temp[0] = $temp[0]-(543);
+    $temp[0] = $temp[0] - (543);
     return "$temp[2]/$temp[1]/$temp[0]";
 }
 
@@ -63,14 +70,14 @@ $sext = $row['gender'];
                 <form method="POST" action="update_profile.php">
                     <div class="form-inline ">
                         <label for="usr">ชื่อ</label>
-                        <input type="text" id="fname" class="form-control mx-sm-3" name='fname' value="<?php echo $row['fname']; ?>" aria-describedby="fnames" disabled>
+                        <input type="text" id="fname" class="form-control mx-sm-3" name='fname' value='<?php echo $fname; ?>' aria-describedby="fnames" disabled>
                         <label for="inputPassword6">นามสกุล</label>
-                        <input type="text" id="lname" class="form-control mx-sm-3" name='lname' value="<?php echo $row['lname']; ?>" aria-describedby="lanmes" disabled><br>
+                        <input type="text" id="lname" class="form-control mx-sm-3" name='lname' value="<?php echo $lname?>" aria-describedby="lanmes" disabled><br>
                     </div>
                     <br>
                     <DIV class="form-inline col-6" style="padding:0">
                         <label for="usr">อีเมลล์</label>
-                        <input type="text" class="form-control col-10 mx-auto" name='email' value="<?php echo $row['email']; ?>" id="email" disabled placeholder="">
+                        <input type="text" class="form-control col-10 mx-auto" name='email' value="<?php echo $email ?>" id="email" disabled placeholder="">
                     </DIV>
                     เพศ
                     <div class="check-box" style="margin-left:20px;">
@@ -91,17 +98,17 @@ $sext = $row['gender'];
                     <div class="form-inline" style="padding:0">
                         <div class="form-group">
                             <label for="usr">เบอร์โทร</label>
-                            <input type="text" id="tel" name='phone' class="form-control mx-sm-3" value="<?php echo $row['phone']; ?>" aria-describedby="passwordHelpInline" disabled>
+                            <input type="text" id="tel" name='phone' class="form-control mx-sm-3" value="<?php echo $phone; ?>" aria-describedby="passwordHelpInline" disabled>
                         </div>
                     </div>
                     <br>
                     <div class="form-group col-sm-6" style="padding-left: 0px;">
                         <label for="comment">ที่อยู่ปัจจุบัน</label>
-                        <textarea class="form-control" rows="4" id="address1" name='adress1' disabled><?php echo $row['adress1']; ?></textarea>
+                        <textarea class="form-control" rows="4" id="address1" name='adress1' disabled><?php echo $adress1; ?></textarea>
                     </div>
                     <div class="form-group col-sm-6" style="padding-left: 0px;">
                         <label for="comment">ที่อยู่ในการจัดส่ง</label>
-                        <textarea class="form-control" rows="4" id="address_recive" name='adress2' disabled><?php echo $row['adress2']; ?></textarea>
+                        <textarea class="form-control" rows="4" id="address_recive" name='adress2' disabled><?php echo $adress2; ?></textarea>
                     </div>
                     <div class="col-6">
                         <button class="btn btn-success" id="saveBtn" type="submit" style="display:none">บันทึกข้อมูล</button>

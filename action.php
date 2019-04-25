@@ -77,33 +77,6 @@ if (isset($_POST["addToProduct"])) {
 
 ?>
 <?php
-if (isset($_POST['cart_checkout'])) {
-    $user_id = $_SESSION["UserID"];
-    $sql = "SELECT * FROM cart where user_id = $user_id";
-    $result = mysqli_query($con, $sql);
-    $row = mysqli_fetch_array($result);
-
-    echo '<div id="cartdetail">
-					<div class="row">
-						<div class="col-md-2"><a href="#" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
-						<a href="#" class="btn btn-success"><i class="fas fa-calculator"></i></a>
-						</div>
-						<div class="col-md-2"><img src="assets/prod_images/tshirt.JPG" width="60px" height="60px"></div>
-						<div class="col-md-2">Tshirt</div>
-						<div class="col-md-2">$700</div>
-						<div class="col-md-2"><input class="form-control" type="text" size="10px" value="1"></div>
-						<div class="col-md-2"><input class="form-control" type="text" size="10px" value="700" disabled></div>
-					</div>
-					</div>
-					<div class="row">
-						<div class="col-md-8"></div>
-						<div class="col-md-4">
-							<b>Total: $500000</b>
-						</div>
-        </div>
-
-    }';
-}
 //delete product 
 if (isset($_POST['remove_id'])) {
 
@@ -127,70 +100,111 @@ if (isset($_POST['remove_id'])) {
 
 //update product 
 if (isset($_POST['updateFromCart'])) {
+
+    $uid = $_SESSION["UserID"];
     $qty = $_POST['qty'];
     $pid = $_POST['update_id'];
-    $uid = $_SESSION["UserID"];
-    // ไม่ปลอดภัย
-    $total = $_POST['total_price'];
-    $sql = "UPDATE carts SET qty ='$qty',total_amount='$total' WHERE p_id=$pid";
-    $run_query = mysqli_query($con, $sql);
-    if ($run_query) {
-        echo '<div style="margin-top:16px;" class="alert alert-success alert-dismissible fade show" role="alert">
-            <span class="spinner-border text-success" role="status">
-            <span class="sr-only">Loading...</span>
-          </span> &nbsp;&nbsp;&nbsp;<strong>อัพเดทสินค้าสำเร็จ!</strong> 
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        </div>';
+    $checkqty = "SELECT qty FROM carts WHERE p_id=$pid AND user_id=$uid";
+    $factData = mysqli_query($con, $checkqty);
+    $getID = mysqli_fetch_array($factData);
+    $tempQTY = $getID['qty'];
+    //check stock 
+    $stock = "SELECT product_stock FROM products where product_id=$pid";
+    $Data = mysqli_query($con, $stock);
+    $tempstock = mysqli_fetch_array($Data);
+    $tempStk = $tempstock['product_stock'];
+    if($qty < 1){
+        echo '<div style="margin-top:16px;" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <span class="spinner-border text-danger" role="status">
+        <span class="sr-only">Loading...</span>
+      </span> &nbsp;&nbsp;&nbsp;<strong>กรุณาใส่จำนวนสินค้าให้ถูกด้วยครับ !</strong> 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>';
+                    exit();
     }
+    if ($qty > $tempStk) {
+        echo '<div style="margin-top:16px;" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <span class="spinner-border text-warning" role="status">
+        <span class="sr-only">Loading...</span>
+      </span> &nbsp;&nbsp;&nbsp;<strong>สินค้าไม่พอกับจำนวนที่สั่งซื้อ !</strong> 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>';
+                    exit();
+    }
+
+
+    if ($qty == $tempQTY) {
+        exit();
+    } else {
+        $total = $_POST['total_price'];
+        $sql = "UPDATE carts SET qty ='$qty',total_amount='$total' WHERE p_id=$pid";
+        $run_query = mysqli_query($con, $sql);
+        if ($run_query) {
+            echo '<div style="margin-top:16px;" class="alert alert-success alert-dismissible fade show" role="alert">
+                <span class="spinner-border text-success" role="status">
+                <span class="sr-only">Loading...</span>
+              </span> &nbsp;&nbsp;&nbsp;<strong>อัพเดทสินค้าสำเร็จ!</strong> 
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>';
+        }
+    }
+
+
+    // ไม่ปลอดภัย
+
 }
 
 //กระบวการอัพโหลด ลบcart update payment update track 
 
 if (isset($_POST['payMoney'])) {
-    $bank =$_POST['bank'];
+    $bank = $_POST['bank'];
     $adress =  $_POST['adress'];
     $phone = $_POST['phone'];
     $img =  $_SESSION["imgupload"];
-    if(isset($_SESSION["number_pay"])){
+    if (isset($_SESSION["number_pay"])) {
         $payNum = $_SESSION["number_pay"];
     }
     $id = $_SESSION["UserID"];
     $sql = "SELECT * FROM user_info WHERE user_id='$id'";
-    $run = mysqli_query($con,$sql);
+    $run = mysqli_query($con, $sql);
     $result = mysqli_fetch_array($run);
-    if($result['phone'] != $phone){
+    if ($result['phone'] != $phone) {
         $sql1 = "UPDATE `user_info` SET `phone` = '$phone' WHERE `user_info`.`user_id` = $id";
-        mysqli_query($con,$sql1);
+        mysqli_query($con, $sql1);
     }
-    if($result['adress2'] != $adress){
+    if ($result['adress2'] != $adress) {
         $sql2 = "UPDATE user_info SET `adress2` = '$adress' WHERE `user_info`.`user_id` = $id";
-        mysqli_query($con,$sql2);
+        mysqli_query($con, $sql2);
     }
 
     $copytable = "INSERT INTO order_store (p_id, user_id,qty,price,tr_id) SELECT p_id, user_id,qty,price,tr_id FROM carts WHERE user_id=$id";
-    mysqli_query($con,$copytable);
-    
+    mysqli_query($con, $copytable);
+
     // $updatenewtable ="INSERT INTO  order_store (tr_id) VALUES ('$payNum') WHERE user_id=$id";
     // mysqli_query($con,$updatenewtable);
-    if(isset($_SESSION["number_pay"])){
+    if (isset($_SESSION["number_pay"])) {
         $addBank = "INSERT INTO payment_store (ref_user_id,ref_cart_id,pay_bill, ref_bank_id) VALUES ('$id','$payNum','$img', '$bank')";
-        mysqli_query($con,$addBank);
+        mysqli_query($con, $addBank);
     }
-    if(isset($_SESSION["number_pay"])){
-    $addtrack_store = "INSERT INTO track_store (ref_pay_id, ref_user_id) VALUES ('$payNum', '$id')";
-    mysqli_query($con,$addtrack_store);
+    if (isset($_SESSION["number_pay"])) {
+        $addtrack_store = "INSERT INTO track_store (ref_pay_id, ref_user_id) VALUES ('$payNum', '$id')";
+        mysqli_query($con, $addtrack_store);
     }
     $deleteCart = "DELETE FROM carts WHERE user_id=$id";
-    mysqli_query($con,$deleteCart);
+    mysqli_query($con, $deleteCart);
 
     // session_unset($_SESSION["number_pay"]);
     unset($_SESSION["number_pay"]);
     $del = "DELETE FROM `track_store` WHERE ref_pay_id=0";
     $del = "DELETE FROM `payment_store` WHERE ref_cart_id=0";
     $del = "DELETE FROM `track_store` WHERE ref_pay_id=0";
-    mysqli_multi_query($con,$del);
+    mysqli_multi_query($con, $del);
 
     echo '<div style="margin-top:16px;" class="alert alert-success alert-dismissible fade show" role="alert">
             <span class="spinner-border text-success" role="status">
@@ -200,6 +214,39 @@ if (isset($_POST['payMoney'])) {
                             <span aria-hidden="true">&times;</span>
                         </button>
                         </div>';
-
 }
+
+//change pwd 
+if (isset($_POST['changepwd'])) {
+    $oldpwd = $_POST['old'];
+    $newpass = $_POST['new'];
+    $confirm = $_POST['con'];
+    // if ($newpass !== $confirm) {
+    //     echo '<div style="margin-top:16px;" class="alert alert-success alert-dismissible fade show" role="alert">
+    //     <span class="spinner-border text-success" role="status">
+    //     <span class="sr-only">Loading...</span>
+    //   </span> &nbsp;&nbsp;&nbsp;<strong>ทำการชำระเสร็จสิ้น1 !</strong> 
+    //                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    //                     <span aria-hidden="true">&times;</span>
+    //                 </button>
+    //                 </div>';
+    // }
+    $id = $_SESSION["UserID"];
+    $sql = "SELECT * FROM user_info where user_id='$id'";
+    $info = mysqli_query($con, $sql);
+    $row = mysqli_fetch_array($info);
+    $password = $row['password'];
+
+    $sql10 = "UPDATE user_info set password='$newpass' where user_id='$id'";
+    $runChange = mysqli_query($con, $sql10);
+    echo '<div style="margin-top:16px;" class="alert alert-success alert-dismissible fade show" role="alert">
+        <span class="spinner-border text-success" role="status">
+        <span class="sr-only">Loading...</span>
+      </span> &nbsp;&nbsp;&nbsp;<strong>ทำการชำระเสร็จสิ้น !</strong> 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>';
+}
+
 ?>

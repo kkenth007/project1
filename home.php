@@ -4,7 +4,14 @@ include "db.php";
 if (isset($_SESSION["number_pay"])) {
     $_SESSION["number_pay"] = $_SESSION["number_pay"];
 } else {
-    $_SESSION["number_pay"] = rand(1264654, 99999999);
+    $_SESSION["number_pay"] = rand(1000000, 999999999);
+    $numpay = $_SESSION["number_pay"];
+    $sql = "SELECT  tr_id FROM order_store WHERE tr_id='$numpay'";
+    $run = mysqli_query($con,$sql);
+    if(mysqli_num_rows($run) > 0){
+        header("Location:sys.php");
+    }
+    
 }
 ?>
 <!DOCTYPE html>

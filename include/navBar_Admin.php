@@ -76,8 +76,8 @@ $bage = mysqli_num_rows($run_query);
                     <div>
                         <div class="panel panel-primary">
                             <a class="dropdown-item" href="front_profile.php"><i class="far fa-address-card"></i> โปรไฟล์</a>
-                            <a class="dropdown-item" href="#"><i class="fas fa-clipboard-list"></i> ประวัติการสั่งซื้อ</a>
-                            <a class="dropdown-item" href="#"><i class="fas fa-exchange-alt"></i> เปลี่ยนรหัสผ่าน</a>
+                            <a class="dropdown-item" href="his_payment.php"><i class="fas fa-clipboard-list"></i> ประวัติการสั่งซื้อ</a>
+                            <a class="dropdown-item" href="m_change_pwd.php"><i class="fas fa-exchange-alt"></i> เปลี่ยนรหัสผ่าน</a>
                             <a class="dropdown-item" href="logout.php"> <i class="fas fa-sign-out-alt"></i> ออกจากระบบ</a>
                         </div>
                     </div>

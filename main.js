@@ -243,4 +243,25 @@ $(document).ready(function () {
         })
     });
 
+    //change pwd
+    $("body").delegate(".changepwd", "click", function (event) {
+        event.preventDefault();
+        var oldpwd = $('#oldpwd').val();
+        var newpwd = $('#pass').val();
+        var conpwd = $('#newpass').val();
+        $.ajax({
+            url: "action.php",
+            method: "POST",
+            data: {changepwd:1,old:oldpwd,new:newpwd,con:conpwd},
+            success: function(data){
+                $('#cart_msg_change').html(data);
+                //#cart_msg_change จำเอาไว่ที่ไม่ขึ้นสักทีเพราะชื่อมันเซ้ากันหลายที่เเล้ว
+                console.log(data);
+                setTimeout(function(){ 
+                    location.replace(window.location.origin+"/project1/home.php");
+                }, 3000)
+            }
+        })
+    });
+
 });
