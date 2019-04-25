@@ -63,222 +63,13 @@ $result = mysqli_query($con, $select);
                 <ul id="get_brand" style="padding-left: 0px;"></ul>
             </div>
 
-            <!-- The Modal -->
-            <div class="modal" id="viewModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <h4 class="modal-title">รายการที่สั่งซื้อ</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="inputPassword">รหัสการสั่งซื้อ</label>
-                                <input class="form-control" id="disabledInput" type="text" value="16471345" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputPassword">รหัสสมาชิก</label>
-                                <input class="form-control" id="disabledInput" type="text" disabled value="654315455">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputPassword">หมายเลขจัดส่ง</label>
-                                <input class="form-control" id="disabledInput" type="text" disabled value="BYAI001033333">
-                            </div>
-                            <div class="row" style="margin: 8px 8px;">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr class="text-center">
-                                            <th scope="col">ลำดับ</th>
-                                            <th scope="col">ชื่อสินค้า</th>
-                                            <th scope="col">รูปสินค้า</th>
-                                            <th scope="col">จำนวนสินค้า</th>
-                                            <th scope="col">ราคาสินค้า</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="text-center">
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>เสื้อเเขนยาว</td>
-                                            <td><img src="./images/gallery/thumbs/01_b_car.jpg" alt="" srcset=""></td>
-                                            <td>2</td>
-                                            <td>2569.00</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>รถยนต์</td>
-                                            <td><img src="./images/gallery/thumbs/02_o_car.jpg" alt="" srcset=""></td>
-                                            <td>1</td>
-                                            <td>25890.00</td>
-                                        </tr>
-
-
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="row" style="margin-left:150px;">
-                                <table class="table-borderless">
-                                    <tbody class="text-center">
-                                        <tr>
-                                            <div class="div" style="width:150px;display: inline-block">
-
-                                            </div>
-                                            <td colspan="6" style="text-align:left;">
-                                                <div>
-                                                    <span class="list-price">ภาษีมูลค่าเพิ่ม 7%
-                                                        <div class="div" style="width:85px;display: inline-block;">
-                                                        </div>
-                                                    </span>
-                                                    <span class="price">4250.00 ฿</span>
-                                                </div>
-                                                <div>
-                                                    <span class="list-price" style="width:80%;">ค่าจัดส่งพัสดุ
-                                                        <div class="div" style="width:120px;display: inline-block;">
-                                                        </div>
-                                                    </span>
-                                                    <span class="price">4250.00 ฿</span>
-                                                </div>
-                                                <div>
-                                                    <span class="list-price" style="width:80%;">รวมทั้งหมด
-                                                        <div class="div" style="width:130px;display: inline-block;">
-                                                        </div>
-                                                    </span>
-                                                    <span class="price">98751.00 ฿</span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="clear" style="clear:both"></div>
-
-
-                        </div>
-
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- edit payment -->
-            <!-- The Modal -->
-            <div class="modal" id="editModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <h4 class="modal-title">แก้ไขรายการที่สั่งซื้อ</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="inputPassword">รหัสการสั่งซื้อ</label>
-                                <input class="form-control" id="disabledInput" type="text" value="16471345" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputPassword">รหัสสมาชิก</label>
-                                <input class="form-control" id="disabledInput" type="text" disabled value="654315455">
-                            </div>
-                            <div class="form-group">
-                                <label for="usr">หมายเลขจัดส่ง</label>
-                                <input type="text" class="form-control" id="track">
-                            </div>
-                            <div class="row" style="margin: 8px 8px;">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr class="text-center">
-                                            <th scope="col">ลำดับ</th>
-                                            <th scope="col">ชื่อสินค้า</th>
-                                            <th scope="col" style="width:105px;">รูปสินค้า</th>
-                                            <th scope="col">จำนวนสินค้า</th>
-                                            <th scope="col">ราคาสินค้า</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="text-center">
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>เสื้อเเขนยาว</td>
-                                            <td><img src="asset/products_img/samsungS10+.jpg" style="width:105px;" alt="" srcset=""></td>
-                                            <td>2</td>
-                                            <td>2569.00</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>รถยนต์</td>
-                                            <td><img src="./images/gallery/thumbs/03_r_car.jpg" style="width:105px;" alt="" srcset=""></td>
-                                            <td>1</td>
-                                            <td>25890.00</td>
-                                        </tr>
-
-
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="row" style="margin-left:150px;">
-                                <table class="table-borderless">
-                                    <tbody class="text-center">
-                                        <tr>
-                                            <div class="div" style="width:150px;display: inline-block">
-
-                                            </div>
-                                            <td colspan="6" style="text-align:left;">
-                                                <!-- <div>
-                                                    <span class="list-price">ภาษีมูลค่าเพิ่ม 7%
-                                                        <div class="div" style="width:85px;display: inline-block;">
-                                                        </div>
-                                                    </span>
-                                                    <span class="price">4250.00 ฿</span>
-                                                </div> -->
-                                                <div>
-                                                    <span class="list-price" style="width:80%;">ค่าจัดส่งพัสดุ
-                                                        <div class="div" style="width:120px;display: inline-block;">
-                                                        </div>
-                                                    </span>
-                                                    <span class="price">4250.00 ฿</span>
-                                                </div>
-                                                <div>
-                                                    <span class="list-price" style="width:80%;">รวมทั้งหมด
-                                                        <div class="div" style="width:130px;display: inline-block;">
-                                                        </div>
-                                                    </span>
-                                                    <span class="price">98751.00 ฿</span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="clear" style="clear:both"></div>
-
-
-                        </div>
-
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">บันทึก</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-
             <div class="col-md-8" style="margin-top:16px;">
                 <h3> ประวัติการสั่งซื้อ</h3>
                 <div class="alert alert-warning">
                     <strong>ขอเเนะนำ!</strong> ถ้าต้องการยกเลิกการสั่งซื้อที่ชำระไปเเล้ว กรุณา ติดต่อ sb6040248104lru.ac.th พร้อมทั้งแจ้งรหัสการสั่งซื้อ เราจะตรวจสอบเมื่อถูกต้อง จะโอนเงินคืนสู่บัญชีธนาคารของท่าน
                 </div>
+                <div class="col-md-12" id="cart_msg_cencel"></div>
+                <div class="col-md-12" id="cart_msg_view"></div>
                 <table class="table table-bordered" style="margin-top:16px;">
                     <thead>
                         <tr>
@@ -301,49 +92,75 @@ $result = mysqli_query($con, $select);
                                 <td><?php echo $row['tr_id']; ?><input type="hidden" code-id="<?php echo $row['tr_id']; ?>" value="<?php echo $row['tr_id']; ?>"></td>
                                 <td><?php echo $user_id; ?></td>
                                 <td><?php echo $row['price']; ?></td>
-                                <td><button class="btn btn-success" data-toggle="modal" data-target="#viewModal">รายละเอียด</button></td>
+                                <td><button class="btn btn-success viewpayment" data-toggle="modal" view_id='<?php echo $row['tr_id']; ?>' data-target="#viewModal">รายละเอียด</button></td>
                                 <td><?php echo $row['p_status']; ?></td>
-                                <td><button class="btn btn-warning" data-toggle="modal" data-target="#editModal">ยกเลิก </button>
-                                    <!-- <span class="mt-3">
-                                        <a href="#" data-toggle="tooltip" title="ถ้าต้องการยกเลิกการสั่งศื้อที่ชำระไปเเล้ว กรุณา ติดต่อ sb6040248104lru.ac.th พร้อมทั้งแจ้งหมายเลขการสั่งซื้อ เราจะตรวจสอบเมื่อถุกต้อง จะโอนเงินคืนสู่บัญชีธนาคารของท่าน "><i class="far fa-question-circle"></i></a>
-                                    </span> -->
-
+                                <td><button class="btn btn-warning cancelpayment" data-toggle="modal" data-target="#cancelModal" id="<?php echo "pro".$row['tr_id']; ?>" cancel_id='<?php echo $row['tr_id']; ?>'>ยกเลิก </button>
                                 </td>
                             </tr>
                             <?php $count++;
+                            
                         } ?>
                     </tbody>
                 </table>
                 <br>
+                <!-- cancel -->
+                <div class="modal fade" id="cancelModal">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
 
-            </div>
-            <div class="col-md-1 ">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">ยกเลิกรายการที่สั่งซื้อ</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
 
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                               คุณต้องการที่จะยกเลิกรายการที่สั่งซื้อหรือไม่ ?
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success confirm-cancel" cancel_id='<?php echo $row['tr_id']; ?>'data-dismiss="modal">ยืนยัน</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1 ">
+
+                </div>
             </div>
         </div>
-    </div>
 
-    <script src="main.js"></script>
+        <script src="main.js"></script>
 
-    <script>
-        $(document).on('click', '.myshow .dropdown-menu', function(e) {
-            e.stopPropagation();
-        });
+        <script>
+            $(document).on('click', '.myshow .dropdown-menu', function(e) {
+                e.stopPropagation();
+            });
 
-        $(document).ready(function() {
-            $('.datepicker').datepicker({
-                format: 'dd/mm/yyyy',
-                todayBtn: true,
-                language: 'th',
-                thaiyear: true //Set เป็นปี พ.ศ.
-            }).datepicker("setDate", "0"); //กำหนดเป็นวันปัจุบัน
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
+            $(document).ready(function() {
+                $('.datepicker').datepicker({
+                    format: 'dd/mm/yyyy',
+                    todayBtn: true,
+                    language: 'th',
+                    thaiyear: true //Set เป็นปี พ.ศ.
+                }).datepicker("setDate", "0"); //กำหนดเป็นวันปัจุบัน
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+
+            $("body").delegate(".exereload", "click", function (event) {
+                setTimeout(function(){ 
+                        location.reload();
+                    }, 3000)
+            });
+        </script>
 </body>
 
 </html>

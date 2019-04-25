@@ -118,6 +118,7 @@ $rows = mysqli_fetch_array($detailProduct);
             </div>
             <div class="col-md-8" style="margin-top:16px;>
                 <div class="container">
+                <div class="col-md-12" id="product_msg"></div>
                     <div class="row">
                         <div class="col-xs-0 col-xs-12 col-sm-6">
                             <div class="product-images">
@@ -158,14 +159,16 @@ $rows = mysqli_fetch_array($detailProduct);
                                     มี <span><?php echo $rows['product_stock']; ?></span> <span><?php echo $rows['product_unit']; ?><span> สต๊อกสินค้า
                                 </div>
                                 <div class="btn" style="display:block; float:left">
-                                    <input type='number' class='product-quantity form-control' name='quantity' min='1' max='<?php echo $rows['product_stock']; ?>' value='1' size='2' />
+                                    <!-- <input type='number' class='product-quantity form-control' name='quantity' min='1' max='<?php echo $rows['product_stock']; ?>' value='1' size='2' /> -->
                                     <!-- <button class="btn btn-primary">เพิ่มในตะกร้าสินค้า</button> -->
-                                    <button style="margin-top:16px;" class='btn btn-primary btn-md' type='submit' value='Add to Cart' class='btnAddAction'><i class='fas fa-cart-plus'></i> Add to Cart</button>
+                                    <!-- <button style="margin-top:16px;" class='btn btn-primary btn-md' type='submit' value='Add to Cart' class='btnAddAction'><i class='fas fa-cart-plus'></i> Add to Cart</button> -->
+                                    <button class="btn btn-primary btn-md product" type="submit" name="add_product" pid="<?php echo $id;?>" value="add_product"><i class="fas fa-cart-plus"></i>  Add to Cart</button>
                                 </div>
                             </div>
 
 
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -192,6 +195,13 @@ $rows = mysqli_fetch_array($detailProduct);
                 language: 'th',
                 thaiyear: true //Set เป็นปี พ.ศ.
             }).datepicker("setDate", "0"); //กำหนดเป็นวันปัจุบัน
+        });
+    </script>
+        <script>
+            $(document).on('click', '.product', function() {
+            setInterval(function(){ 
+                location.reload(); 
+            }, 2000);
         });
     </script>
 </body>

@@ -2,3 +2,5 @@ location.assign("https://www.w3schools.com");
 
 
 http://www.mkyadav.in/shoppingcart/js/custom.js
+
+SELECT * FROM order_store INNER JOIN products ON order_store.p_id = products.product_id WHERE user_id = 11

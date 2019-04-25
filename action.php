@@ -113,7 +113,7 @@ if (isset($_POST['updateFromCart'])) {
     $Data = mysqli_query($con, $stock);
     $tempstock = mysqli_fetch_array($Data);
     $tempStk = $tempstock['product_stock'];
-    if($qty < 1){
+    if ($qty < 1) {
         echo '<div style="margin-top:16px;" class="alert alert-danger alert-dismissible fade show" role="alert">
         <span class="spinner-border text-danger" role="status">
         <span class="sr-only">Loading...</span>
@@ -122,7 +122,7 @@ if (isset($_POST['updateFromCart'])) {
                         <span aria-hidden="true">&times;</span>
                     </button>
                     </div>';
-                    exit();
+        exit();
     }
     if ($qty > $tempStk) {
         echo '<div style="margin-top:16px;" class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -133,7 +133,7 @@ if (isset($_POST['updateFromCart'])) {
                         <span aria-hidden="true">&times;</span>
                     </button>
                     </div>';
-                    exit();
+        exit();
     }
 
 
@@ -209,7 +209,7 @@ if (isset($_POST['payMoney'])) {
     echo '<div style="margin-top:16px;" class="alert alert-success alert-dismissible fade show" role="alert">
             <span class="spinner-border text-success" role="status">
             <span class="sr-only">Loading...</span>
-          </span> &nbsp;&nbsp;&nbsp;<strong>ทำการชำระเสร็จสิ้น !</strong> 
+          </span> &nbsp;&nbsp;&nbsp;<strong>ทำการชำระเสร็จสิ้น กำลังไปยังหน้าหลัก สามารถ ตรวจสอบการสั่งซื้อได้จาก แถบเมนู ประวัติการสั่งซื้อ !</strong> 
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -249,4 +249,29 @@ if (isset($_POST['changepwd'])) {
                     </div>';
 }
 
+if (isset($_POST['cencelpayment'])) {
+    // $id = $_SESSION["UserID"];
+    $code = $_POST['cancel'];
+    $cancel = "UPDATE `order_store` SET `p_status` = 'ยกเลิกการสั่งซื้อ' WHERE `order_store`.`tr_id` = '$code'";
+    $runCancel = mysqli_query($con, $cancel);
+    if ($runCancel) {
+        echo '<div style="margin-top:16px;" class="alert alert-success alert-dismissible fade show" role="alert">
+        <span class="spinner-border text-success" role="status">
+        <span class="sr-only">Loading...</span>
+      </span> &nbsp;&nbsp;&nbsp;<strong>ยกเลิกรายการสั่งซื้อสำเร็จ !</strong> 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>';
+    } else {
+        echo '<div style="margin-top:16px;" class="alert alert-success alert-dismissible fade show" role="alert">
+        <span class="spinner-border text-success" role="status">
+        <span class="sr-only">Loading...</span>
+      </span> &nbsp;&nbsp;&nbsp;<strong>ยกเลิกรายการสั่งซื้อไม่สำเร็จ !</strong> 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>';
+    }
+}
 ?>

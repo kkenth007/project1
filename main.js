@@ -194,11 +194,8 @@ $(document).ready(function () {
     $(document).ready(function() {
 
         $("#but_upload").click(function() {
-
             var fd = new FormData();
-
             var files = $('#file')[0].files[0];
-
             fd.append('file', files);
 
             $.ajax({
@@ -237,7 +234,7 @@ $(document).ready(function () {
                 $('#product_msg').html(data);
                 setTimeout(function(){ 
                     location.replace(window.location.origin+"/project1/sys.php");
-                }, 2000)
+                }, 9000)
                 
             }
         })
@@ -264,4 +261,47 @@ $(document).ready(function () {
         })
     });
 
+    // cancel payment
+    $("body").delegate(".cancelpayment", "click", function (event) {
+        event.preventDefault();
+        var code = $(this).attr("cancel_id");
+        // alert(code);
+        $('#cancelModal').modal('show');
+        $("body").delegate(".confirm-cancel", "click", function (event) {
+            event.preventDefault();
+            var cancel = code;
+            // alert(cancel);
+            $.ajax({
+                url: "action.php",
+                method: "POST",
+                data: {cencelpayment:1,cancel:cancel},
+                success: function(data){
+                    $('#cart_msg_cencel').html(data);
+                    setTimeout(function(){ 
+                        location.reload();
+                    }, 3000)
+                }
+            })
+        });
+
+    });
+
+    // view payment
+    $("body").delegate(".viewpayment", "click", function (event) {
+        event.preventDefault();
+        var view = $(this).attr("view_id");
+        // alert(view);
+        $.ajax({
+            url: "view_payment.php",
+            method: "POST",
+            data: {viewpayment:1,view:view},
+            success: function(data){
+                $('#cart_msg_view').html(data);
+                // setTimeout(function(){ 
+                //     location.reload();
+                // }, 3000)
+                $('#viewModal').modal('show');
+            }
+        })
+    });
 });
