@@ -137,7 +137,11 @@ $result = mysqli_query($con, $sql);
                                 $shipping = "<del>ฟรีค่าจัดส่ง</del>";
                             } else {
                                 $items = mysqli_num_rows($result);
-                                $shipping = 120.00;
+                                if($items == 0){
+                                    $shipping = "0.00";
+                                }else{
+                                    $shipping = 120.00;
+                                }
                             }
                             if (is_numeric($shipping)) {
                                 $total += $shipping;

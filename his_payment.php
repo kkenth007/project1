@@ -85,7 +85,19 @@ $result = mysqli_query($con, $select);
                     </thead>
                     <tbody>
                         <?php $count = 1;
-                        while ($row = mysqli_fetch_array($result)) {  ?>
+                        while ($row = mysqli_fetch_array($result)) {  
+                            if($row['p_status'] == 'ยกเลิกการสั่งซื้อ'){
+                                $status = '<span class="badge badge-danger">ยกเลิกการสั่งซื้อ</span>';
+                            }elseif($row['p_status'] == 'รอการตรวจสอบ'){
+                                $status = '<span class="badge badge-warning">รอการตรวจสอบ</span>';
+                            }elseif($row['p_status'] == 'ชำระเรียบร้อย'){
+                                $status = '<span class="badge badge-success">ชำระเรียบร้อย</span>';
+                            }else{
+                                $status = $row['p_status'];
+                            }
+
+                            
+                            ?>
 
                             <tr>
                                 <th scope="row"><?php echo $count; ?></th>
@@ -93,7 +105,7 @@ $result = mysqli_query($con, $select);
                                 <td><?php echo $user_id; ?></td>
                                 <td><?php echo $row['price']; ?></td>
                                 <td><button class="btn btn-success viewpayment" data-toggle="modal" view_id='<?php echo $row['tr_id']; ?>' data-target="#viewModal">รายละเอียด</button></td>
-                                <td><?php echo $row['p_status']; ?></td>
+                                <td><?php echo $status ;?></td>
                                 <td><button class="btn btn-warning cancelpayment" data-toggle="modal" data-target="#cancelModal" id="<?php echo "pro".$row['tr_id']; ?>" cancel_id='<?php echo $row['tr_id']; ?>'>ยกเลิก </button>
                                 </td>
                             </tr>
