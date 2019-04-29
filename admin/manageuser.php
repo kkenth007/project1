@@ -1,7 +1,11 @@
 <?php
 session_start();
+include "../db.php";
 if ($_SESSION["Userlevel"] == "A") {
-
+    $sql = "SELECT * FROM user_info";
+    $alluser = mysqli_query($con, $sql);
+    // $brand = "SELECT * FROM brand";
+    // $allbrand = mysqli_query($con, $brand);
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -29,33 +33,7 @@ if ($_SESSION["Userlevel"] == "A") {
     <?php include "../include/scriptAfterHead.php"; ?>
 
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#007bff;">
-            <a class="navbar-brand" href="javascript:void(0)">
-                <h2>Shopee</h2>
-            </a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navb">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href=""><i class="fas fa-home"></i> Home</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#"><i class="fab fa-buromobelexperte"></i> Product </a>
-                    </li>
-                    <li class="nav-item">
-                        <form class="form-inline my-2 my-lg-0">
-                            <input style="width:300px;margin-left: 10px;" class="form-control mr-sm-2" type="text" id="search" placeholder="Search">
-                            <button class="btn btn-primary my-2 my-sm-0" type="button" style="border:1px solid#ffffff;">Search</button>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-
-        </nav>
+        <?php include "./include/navbar.php"; ?>
 
         <!-- <?php include 'listProduct.php' ?> -->
         <div class="container-fluid">
@@ -66,6 +44,7 @@ if ($_SESSION["Userlevel"] == "A") {
                     <?php include "./include/tab.html"; ?>
                 </div>
                 <div class="col-md-8" style="margin-top:16px;">
+                    <div class="msg-alert-user" id="msg-alert-user"></div>
                     <table class="table table-bordered" style="margin-top:16px;">
                         <thead>
                             <button class="btn btn-success" data-toggle="modal" data-target="#myModal">เพิ่มสมาชิก</button>
@@ -81,44 +60,46 @@ if ($_SESSION["Userlevel"] == "A") {
                                         </div>
 
                                         <!-- Modal body -->
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label for="usr">ชื่อ</label>
-                                                <input type="text" class="form-control" id="usr">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="usr">นามสกุล</label>
-                                                <input type="text" class="form-control" id="usr">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="usr">อีเมลล์</label>
-                                                <input type="email" class="form-control" id="usr" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="usr">รหัสผ่าน</label>
-                                                <input type="password" class="form-control" id="usr" required>
-                                            </div>
-                                            <label for="date" style="margin-top:9px;">วัน/เดือน/ปี เกิด</label>
-                                            <input id="inputdatepicker" class="datepicker form-control" name="birth" data-date-format="mm/dd/yyyy">
-                                            เพศ
-                                            <div class="check-box" style="margin-left:20px;margin-top:16px;">
-                                                <label class="form-check-label" for="radio1" style="margin-left:20px;">
-                                                    <input type="radio" class="form-check-input" id="radio1" name="gender" value="female" checked>หญิง
-                                                </label>
-                                                <label class="form-check-label" style="margin-left:40px;" for="radio1">
-                                                    <input type="radio" class="form-check-input" id="radio2" name="gender" value="male" checked>ชาย
-                                                </label>
-                                            </div>
+
+                                        <form action="fetch.php" method="post">
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="fname">ชื่อ</label>
+                                                    <input type="text" class="form-control" name="fname">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="lname">นามสกุล</label>
+                                                    <input type="text" class="form-control" name="lname">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="email">อีเมลล์</label>
+                                                    <input type="email" class="form-control" name="email" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="password">รหัสผ่าน</label>
+                                                    <input type="password" class="form-control" name="password" required>
+                                                </div>
+                                                <label for="date" style="margin-top:9px;">วัน/เดือน/ปี เกิด</label>
+                                                <input id="inputdatepicker" class="datepicker form-control" name="birth" data-date-format="mm/dd/yyyy">
+                                                เพศ
+                                                <div class="check-box" style="margin-left:20px;margin-top:16px;">
+                                                    <label class="form-check-label" for="radio1" style="margin-left:20px;">
+                                                        <input type="radio" class="form-check-input" id="radio1" name="gender" value="female" checked>หญิง
+                                                    </label>
+                                                    <label class="form-check-label" style="margin-left:40px;" for="radio1">
+                                                        <input type="radio" class="form-check-input" id="radio2" name="gender" value="male" checked>ชาย
+                                                    </label>
+                                                </div>
 
 
-                                        </div>
+                                            </div>
 
-                                        <!-- Modal footer -->
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-success" data-dismiss="modal">บันทึก</button>
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal">ออก</button>
-                                        </div>
-
+                                            <!-- Modal footer -->
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-success" name="adduser" value="adduser">บันทึก</button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">ออก</button>
+                                            </div>
+                                        </form>
                                     </div>
 
 
@@ -136,42 +117,23 @@ if ($_SESSION["Userlevel"] == "A") {
                 </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">คณิต วิจิตรปัญญา</th>
-                        <td>063-028-0119</td>
-                        <td>ชาย</td>
-                        <td>Kanit_it@gmail.com</td>
-                        <td><button class="btn btn-success" data-toggle="modal" data-target="#viewModal">รายละเอียด</button></td>
-                        <td><input type="button" class="btn btn-warning" value="แก้ไข" data-toggle="modal" data-target="#editModal"></td>
-                        <td><button class="btn btn-danger">ลบ</button></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">วรินทร์ ประภาพร</th>
-                        <td>098-326-1230</td>
-                        <td>หญิง</td>
-                        <td>Warin_it@gmail.com</td>
-                        <td><button class="btn btn-success">รายละเอียด</button></td>
-                        <td><input type="button" class="btn btn-warning" value="แก้ไข"></td>
-                        <td><button class="btn btn-danger">ลบ</button></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">สุนิสา ชัชวาล</th>
-                        <td>085-564-1346</td>
-                        <td>หญิง</td>
-                        <td>Sunisa_it@gmail.com</td>
-                        <td><button class="btn btn-success">รายละเอียด</button></td>
-                        <td><input type="button" class="btn btn-warning" value="แก้ไข"></td>
-                        <td><button class="btn btn-danger">ลบ</button></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">กฎษฎา นาวกูล</th>
-                        <td>089-213-1416</td>
-                        <td>ชาย</td>
-                        <td>Krist_it@gmail.com</td>
-                        <td><button class="btn btn-success">รายละเอียด</button></td>
-                        <td><input type="button" class="btn btn-warning" value="แก้ไข"></td>
-                        <td><button class="btn btn-danger">ลบ</button></td>
-                    </tr>
+                    <?php while ($row = mysqli_fetch_assoc($alluser)) {
+                        if ($row['gender'] == 'male') {
+                            $gender = 'ชาย';
+                        } else {
+                            $gender = 'หญิง';
+                        }
+                        ?>
+                        <tr>
+                            <th scope="row"><?php echo $row['fname'] . " " . $row['lname']; ?></th>
+                            <td><?php echo $row['phone']; ?></td>
+                            <td><?php echo $gender; ?></td>
+                            <td><?php echo $row['email']; ?></td>
+                            <td><button class="btn btn-success view_user" data-toggle="modal" data-target="#viewUser" value="<?php echo $row['user_id']; ?>">รายละเอียด</button></td>
+                            <td><button type="button" class="btn btn-warning edit_user" data-toggle="modal" value="<?php echo $row['user_id']; ?>" data-target="#editModal">แก้ไข</button></td>
+                            <td><button value="<?php echo $row['user_id']; ?>" class="btn btn-danger del-member">ลบ</button></td>
+                        </tr>
+                    <?php }  ?>
                 </tbody>
                 </table>
             </div>
@@ -182,67 +144,60 @@ if ($_SESSION["Userlevel"] == "A") {
         </div>
         <!-- ส่วนการเเก้ไข -->
         <!-- The Modal -->
-        <div class="modal fade" id="editModal">
+        <div class="modal fade" id="editUser">
             <div class="modal-dialog">
                 <div class="modal-content">
+                    <form action="fetch.php" method="post">
 
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">แก้ไขสมาชิก</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
 
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="usr">ชื่อ</label>
-                            <input type="text" class="form-control" id="usr">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">แก้ไขสมาชิก</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
-                        <div class="form-group">
-                            <label for="usr">นามสกุล</label>
-                            <input type="text" class="form-control" id="usr">
-                        </div>
-                        <div class="form-group">
-                            <label for="usr">อีเมลล์</label>
-                            <input type="email" class="form-control" id="usr">
-                        </div>
-                        <div class="form-group">
-                            <label for="usr">รหัสผ่าน</label>
-                            <input type="password" class="form-control" id="usr">
-                        </div>
-                        <label for="date" style="margin-top:9px;">วัน/เดือน/ปี เกิด</label>
-                        <input id="inputdatepicker" class="datepicker form-control" name="birth" data-date-format="mm/dd/yyyy">
-                        <br>
-                        เพศ
-                        <div class="check-box" style="margin-left:20px;margin-top:16px;">
-                            <label class="form-check-label" for="radio1" style="margin-left:20px;">
-                                <input type="radio" class="form-check-input" id="radio1" name="gender" value="female" checked>หญิง
-                            </label>
-                            <label class="form-check-label" style="margin-left:40px;" for="radio1">
-                                <input type="radio" class="form-check-input" id="radio2" name="gender" value="male" checked>ชาย
-                            </label>
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <label for="usr">เบอร์โทร</label>
-                            <input type="text" class="form-control" id="usr">
-                        </div>
-                        <div class="form-group">
-                            <label for="comment">ที่อยู่ปัจจุบัน</label>
-                            <textarea class="form-control" rows="4" id="comment"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="comment">ที่อยู่ในการจัดส่ง</label>
-                            <textarea class="form-control" rows="4" id="comment"></textarea>
-                        </div>
-                    </div>
 
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">บันทึก</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">ออก</button>
-                    </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="fname">ชื่อ</label>
+                                <input type="text" class="form-control" name="editfname" id="editfname">
+                            </div>
+                            <div class="form-group">
+                                <label for="lname">นามสกุล</label>
+                                <input type="text" class="form-control" name="editlname" id="editlname">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">อีเมลล์</label>
+                                <input type="email" class="form-control" name="editemail" id="editemail">
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">รหัสผ่าน</label>
+                                <input type="text" class="form-control" name="editpassword" id="editpassword">
+                            </div>
+                            <label for="date" style="margin-top:9px;">วัน/เดือน/ปี เกิด</label>
+                            <input id="inputdatepickers" class="datepicker form-control" name="birth" data-date-format="mm/dd/yyyy">
+                            <br>
+                            <div class="form-group">
+                                <label for="usr">เบอร์โทร</label>
+                                <input type="text" class="form-control" name="editphone" id="editphone">
+                            </div>
+                            <div class="form-group">
+                                <label for="comment">ที่อยู่ปัจจุบัน</label>
+                                <textarea class="form-control" rows="4" name="editadress1" id="editadress1"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="comment">ที่อยู่ในการจัดส่ง</label>
+                                <textarea class="form-control" rows="4" name="editadress2" id="editadress2"></textarea>
+                            </div>
+                            <input type="hidden" name="userEditt" id="user_idX">
+                        </div>
 
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success" id="edit_user" name="editrunner" value="<?php echo $row['user_id']; ?>">บันทึก</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">ออก</button>
+                        </div>
+                    </form>
                 </div>
 
 
@@ -252,7 +207,7 @@ if ($_SESSION["Userlevel"] == "A") {
 
         <!-- ส่วนการวิว -->
         <!-- The Modal -->
-        <div class="modal fade" id="viewModal">
+        <div class="modal fade" id="viewUser">
             <div class="modal-dialog">
                 <div class="modal-content">
 
@@ -265,45 +220,35 @@ if ($_SESSION["Userlevel"] == "A") {
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="usr">ชื่อ</label>
-                            <input type="text" class="form-control" id="usr">
+                            <label for="name">ชื่อ</label>
+                            <input type="text" class="form-control" id="viewfname" disabled>
                         </div>
                         <div class="form-group">
-                            <label for="usr">นามสกุล</label>
-                            <input type="text" class="form-control" id="usr">
+                            <label for="lname">นามสกุล</label>
+                            <input type="text" class="form-control" id="viewlname" disabled>
                         </div>
                         <div class="form-group">
-                            <label for="usr">อีเมลล์</label>
-                            <input type="email" class="form-control" id="usr">
+                            <label for="email">อีเมลล์</label>
+                            <input type="email" class="form-control" id="viewemail" disabled>
                         </div>
                         <div class="form-group">
-                            <label for="usr">รหัสผ่าน</label>
-                            <input type="password" class="form-control" id="usr">
+                            <label for="pwd">รหัสผ่าน</label>
+                            <input type="text" class="form-control" id="viewpassword" disabled>
                         </div>
-                        <label for="date" style="margin-top:9px;">วัน/เดือน/ปี เกิด</label>
-                        <input id="inputdatepicker" class="datepicker form-control" name="birth" data-date-format="mm/dd/yyyy">
-                        <br>
-                        เพศ
-                        <div class="check-box" style="margin-left:20px;margin-top:16px;">
-                            <label class="form-check-label" for="radio1" style="margin-left:20px;">
-                                <input type="radio" class="form-check-input" id="radio1" name="gender" value="female" checked>หญิง
-                            </label>
-                            <label class="form-check-label" style="margin-left:40px;" for="radio1">
-                                <input type="radio" class="form-check-input" id="radio2" name="gender" value="male" checked>ชาย
-                            </label>
-                        </div>
+                        <label for="date" style="margin-top:9px;">ปี/เดือน/วัน เกิด</label>
+                        <input id="inputdatepickerss" disabled class="datepicker form-control" name="viewborn" data-date-format="mm/dd/yyyy">
                         <br>
                         <div class="form-group">
-                            <label for="usr">เบอร์โทร</label>
-                            <input type="text" class="form-control" id="usr">
+                            <label for="phone">เบอร์โทร</label>
+                            <input type="text" class="form-control" id="viewphone" disabled>
                         </div>
                         <div class="form-group">
                             <label for="comment">ที่อยู่ปัจจุบัน</label>
-                            <textarea class="form-control" rows="4" id="comment"></textarea>
+                            <textarea class="form-control" rows="4" id="viewadress1" disabled></textarea>
                         </div>
                         <div class="form-group">
                             <label for="comment">ที่อยู่ในการจัดส่ง</label>
-                            <textarea class="form-control" rows="4" id="comment"></textarea>
+                            <textarea class="form-control" rows="4" id="viewadress2" disabled></textarea>
                         </div>
                     </div>
 
@@ -338,6 +283,77 @@ if ($_SESSION["Userlevel"] == "A") {
                     language: 'th',
                     thaiyear: true //Set เป็นปี พ.ศ.
                 }).datepicker("setDate", "0"); //กำหนดเป็นวันปัจุบัน
+            });
+        </script>
+        <script>
+            $(document).on('click', '.view_user', function() {
+                var user_id = $(this).val();
+                // alert(user_id);
+                $.ajax({
+                    url: "fetch.php",
+                    method: "POST",
+                    data: {
+                        user_id: user_id
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        $('#viewfname').val(data.fname);
+                        $('#viewlname').val(data.lname);
+                        $('#viewemail').val(data.email);
+                        $('#viewpassword').val(data.password);
+                        $('#viewphone').val(data.phone);
+                        $('#viewadress1').val(data.adress1);
+                        $('#viewadress2').val(data.adress2);
+                        $('#inputdatepickerss').val(data.born);
+                        $('#viewUser').modal('show');
+                    }
+                });
+            });
+
+            //edit
+            $(document).on('click', '.edit_user', function() {
+                var edit_user_id = $(this).val();
+                // alert(user_id);
+                $.ajax({
+                    url: "fetch.php",
+                    method: "POST",
+                    data: {
+                        edit_user_id: edit_user_id
+                    },
+                    dataType: "json",
+                    success: function(data) {
+
+                        $('#editfname').val(data.fname);
+                        $('#editlname').val(data.lname);
+                        $('#editemail').val(data.email);
+                        $('#editpassword').val(data.password);
+                        $('#editphone').val(data.phone);
+                        $('#editadress1').val(data.adress1);
+                        $('#editadress2').val(data.adress2);
+                        $('#inputdatepickers').val(data.born);
+                        $('#user_idX').val(data.user_id);
+                        $('#editUser').modal('show');
+                    }
+                });
+            });
+
+            // del-member
+            $(document).on('click', '.del-member', function() {
+                var u_id = $(this).val();
+                // alert(id_brand);
+                $.ajax({
+                    url: "fetch.php",
+                    method: "POST",
+                    data: {
+                        u_id: u_id
+                    },
+                    success: function(data) {
+                        $('#msg-alert-user').html(data);
+                        setTimeout(function() {
+                            location.reload();
+                        }, 2000)
+                    }
+                });
             });
         </script>
 

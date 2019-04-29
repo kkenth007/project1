@@ -1,7 +1,11 @@
 <?php
 session_start();
+include "../db.php";
 if ($_SESSION["Userlevel"] == "A") {
-
+    $sql = "SELECT * FROM categories";
+    $allcat = mysqli_query($con, $sql);
+    $brand = "SELECT * FROM brand";
+    $allbrand = mysqli_query($con, $brand);
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -31,35 +35,9 @@ if ($_SESSION["Userlevel"] == "A") {
         <?php include "../include/scriptAfterHead.php"; ?>
 
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#007bff;">
-            <a class="navbar-brand" href="javascript:void(0)">
-                <h2>Shopee</h2>
-            </a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
-            <div class="collapse navbar-collapse" id="navb">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href=""><i class="fas fa-home"></i> Home</a>
-                    </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#"><i class="fab fa-buromobelexperte"></i> Product </a>
-                    </li>
-                    <li class="nav-item">
-                        <form class="form-inline my-2 my-lg-0">
-                            <input style="width:300px;margin-left: 10px;" class="form-control mr-sm-2" type="text" id="search" placeholder="Search">
-                            <button class="btn btn-primary my-2 my-sm-0" type="button" style="border:1px solid#ffffff;">Search</button>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-
-        </nav>
-
-        <!-- <?php include 'listProduct.php' ?> -->
+        <?php include "./include/navbar.php"; ?>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-1"></div>
@@ -68,6 +46,7 @@ if ($_SESSION["Userlevel"] == "A") {
                     <?php include "./include/tab.html"; ?>
                 </div>
                 <div class="col-md-8" style="margin-top:16px;">
+                    <div id="msg-alert"></div>
                     <table class="table table-bordered" style="margin-top:16px;">
                         <thead>
                             <button class="btn btn-success" data-toggle="modal" data-target="#addCatModal">เพิ่มหมวดหมู่</button>
@@ -92,12 +71,13 @@ if ($_SESSION["Userlevel"] == "A") {
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label for="usr">ชื่อหมวดหมู่</label>
-                                            <input type="text" class="form-control" id="usr">
+                                            <input type="text" class="form-control" id="editmenu" value="">
+                                            <input type="hidden" name="id_cat" id="idcat" value="idcat">
                                         </div>
 
                                         <!-- Modal footer -->
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-success" data-dismiss="modal">บันทึก</button>
+                                            <button type="button" class="btn btn-success" id="confirm_OK" data-dismiss="modal">บันทึก</button>
                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                         </div>
 
@@ -106,31 +86,18 @@ if ($_SESSION["Userlevel"] == "A") {
                             </div>
 
                             <tbody>
-                                <tr>
-                                    <th scope="row">อุปกรณ์ อิเล็กทรอนิกส์</th>
-                                    <td><button class="btn btn-warning" data-toggle="modal" data-target="#editCat">แก้ไข</button></td>
-                                    <td><button class="btn btn-danger">ลบ</button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">เครื่องประดับ</th>
-                                    <td><button class="btn btn-warning" data-toggle="modal" data-target="#editCat">แก้ไข</button></td>
-                                    <td><button class="btn btn-danger">ลบ</button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">แฟชั่นผู้ชาย</th>
-                                    <td><button class="btn btn-warning" data-toggle="modal" data-target="#editCat">แก้ไข</button></td>
-                                    <td><button class="btn btn-danger">ลบ</button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">เเฟชั่นผู้หญิง</th>
-                                    <td><button class="btn btn-warning" data-toggle="modal" data-target="#editCat">แก้ไข</button></td>
-                                    <td><button class="btn btn-danger">ลบ</button></td>
-                                </tr>
+                                <?php while ($row = mysqli_fetch_assoc($allcat)) { ?>
+                                    <tr>
+                                        <th scope="row"><?php echo $row['cat_title'] ?></th>
+                                        <td><button class="btn btn-warning editmenus" data-toggle="modal" data-target="#editCat" value="<?php echo $row['cat_id']; ?>">แก้ไข</button></td>
+                                        <td><button class="btn btn-danger deletemenus" value="<?php echo $row['cat_id']; ?>">ลบ</button></td>
+                                    </tr>
+                                <?php } ?>
                             </tbody>
                     </table>
                     <table class="table table-bordered" style="margin-top:16px;">
                         <thead>
-                            <button class="btn btn-success" data-toggle="modal" data-target="#addBrand">เพิ่ม
+                            <button class="btn btn-success" data-toggle="modal" id="addbrand" data-target="#addBrand">เพิ่ม
                                 เเบรนด์</button>
                             <!-- add brand -->
                             <!-- The Modal -->
@@ -148,12 +115,12 @@ if ($_SESSION["Userlevel"] == "A") {
                                         <div class="modal-body">
                                             <div class="form-group">
                                                 <label for="usr"> ชื่อเเบรนด์ </label>
-                                                <input type="text" class="form-control" id="usr">
+                                                <input type="text" class="form-control" id="textbrand">
                                             </div>
 
                                             <!-- Modal footer -->
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-success" data-dismiss="modal">บันทึก</button>
+                                                <button type="button" class="btn btn-success" id="save_brand" data-dismiss="modal">บันทึก</button>
                                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                             </div>
 
@@ -182,12 +149,13 @@ if ($_SESSION["Userlevel"] == "A") {
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label for="usr"> ชื่อเเบรนด์ </label>
-                                            <input type="text" class="form-control" id="usr">
+                                            <input type="text" class="form-control" id="editbrandtext">
+                                            <input type="hidden" id="idbrand">
                                         </div>
 
                                         <!-- Modal footer -->
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-success" data-dismiss="modal">บันทึก</button>
+                                            <button type="button" class="btn btn-success " id="confirm_Brand" data-dismiss="modal">บันทึก</button>
                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                         </div>
 
@@ -195,26 +163,13 @@ if ($_SESSION["Userlevel"] == "A") {
                                 </div>
                             </div>
                             <tbody>
-                                <tr>
-                                    <th scope="row">Apple</th>
-                                    <td><input type="button" class="btn btn-warning" value="แก้ไข" data-toggle="modal" data-target="#ediBrand"></td>
-                                    <td><button class="btn btn-danger">ลบ</button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Samsung</th>
-                                    <td><input type="button" class="btn btn-warning" value="แก้ไข"></td>
-                                    <td><button class="btn btn-danger">ลบ</button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">HP</th>
-                                    <td><input type="button" class="btn btn-warning" value="แก้ไข"></td>
-                                    <td><button class="btn btn-danger">ลบ</button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">H & M</th>
-                                    <td><input type="button" class="btn btn-warning" value="แก้ไข"></td>
-                                    <td><button class="btn btn-danger">ลบ</button></td>
-                                </tr>
+                                <?php while ($row = mysqli_fetch_assoc($allbrand)) { ?>
+                                    <tr>
+                                        <th scope="row"><?php echo $row['brand_title']; ?></th>
+                                        <td><button type="button" class="btn btn-warning editbrand" value="<?php echo $row['brand_id']; ?>" data-toggle="modal" data-target="#ediBrand">แก้ไข</button></td>
+                                        <td><button class="btn btn-danger deletebrand" value="<?php echo $row['brand_id']; ?>">ลบ</button></td>
+                                    </tr>
+                                <?php } ?>
                             </tbody>
                     </table>
                 </div>
@@ -238,12 +193,12 @@ if ($_SESSION["Userlevel"] == "A") {
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="usr">ชื่อหมวดหมู่</label>
-                            <input type="text" class="form-control" id="usr">
+                            <input type="text" class="form-control" id="addcatText">
                         </div>
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">บันทึก</button>
+                            <button type="button" class="btn btn-success addcat_save" data-dismiss="modal">บันทึก</button>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
 
@@ -280,22 +235,171 @@ if ($_SESSION["Userlevel"] == "A") {
                     </div>
                 </div>
 
-
                 <script>
-                    $(document).on('click', '.myshow .dropdown-menu', function(e) {
-                        e.stopPropagation();
-                    });
-
                     $(document).ready(function() {
-                        $('.datepicker').datepicker({
-                            format: 'dd/mm/yyyy',
-                            todayBtn: true,
-                            language: 'th',
-                            thaiyear: true //Set เป็นปี พ.ศ.
-                        }).datepicker("setDate", "0"); //กำหนดเป็นวันปัจุบัน
+                        $(document).on('click', '.editmenus', function() {
+                            var edit_id = $(this).val();
+                            //   alert(edit_id);
+                            $.ajax({
+                                url: "fetch.php",
+                                method: "POST",
+                                data: {
+                                    edit_id: edit_id
+                                },
+                                dataType: "json",
+                                success: function(data) {
+                                    $('#editmenu').val(data.cat_title);
+                                    $('#editCat').modal('show');
+                                    $('#idcat').val(data.cat_id);
+                                    // alert(data.cat_title);
+                                }
+                            });
+                        });
+
+                        $(document).on('click', '#confirm_OK', function() {
+                            var new_edit_id = $("#editmenu").val();
+                            var idcat = $("#idcat").val();
+                            // alert(new_edit_id);
+                            $.ajax({
+                                url: "fetch.php",
+                                method: "POST",
+                                data: {
+                                    new_edit_id: new_edit_id,
+                                    idcat: idcat
+                                },
+                                success: function(data) {
+                                    setTimeout(function() {
+                                        location.reload();
+                                    }, 100)
+                                }
+                            });
+
+                        });
+
+                        $(document).on('click', '.deletemenus', function() {
+                            var delete_id = $(this).val();
+                            // alert(delete_id);
+                            $.ajax({
+                                url: "fetch.php",
+                                method: "POST",
+                                data: {
+                                    delete_id: delete_id
+                                },
+                                success: function(data) {
+                                    $('#msg-alert').html(data);
+
+                                    setTimeout(function() {
+                                        location.reload();
+                                    }, 2000)
+                                }
+                            });
+                        });
+
+                        // addcat
+                        $(document).on('click', '#addcat', function() {
+                            $('#addCatModal').modal('show');
+                        });
+                        $(document).on('click', '.addcat_save', function() {
+                            var addcat = $("#addcatText").val();
+                            // alert(addcat);
+                            $.ajax({
+                                url: "fetch.php",
+                                method: "POST",
+                                data: {
+                                    addcat: addcat
+                                },
+                                success: function(data) {
+                                    $('#msg-alert').html(data);
+
+                                    setTimeout(function() {
+                                        location.reload();
+                                    }, 2000)
+                                }
+                            });
+                        });
+
+                        //add brand 
+                        $(document).on('click', '#addbrand', function() {
+                            $('#addBrand').modal('show');
+                        });
+                        $(document).on('click', '#save_brand', function() {
+                            var textbrand = $("#textbrand").val();
+                            // alert(addcat);
+                            $.ajax({
+                                url: "fetch.php",
+                                method: "POST",
+                                data: {
+                                    textbrand: textbrand
+                                },
+                                success: function(data) {
+                                    $('#msg-alert').html(data);
+
+                                    setTimeout(function() {
+                                        location.reload();
+                                    }, 100)
+                                }
+                            });
+                        });
+                        // delete brand
+                        $(document).on('click', '.deletebrand', function() {
+                            var id_brand = $(this).val();
+                            // alert(id_brand);
+                            $.ajax({
+                                url: "fetch.php",
+                                method: "POST",
+                                data: {
+                                    del_brand: id_brand
+                                },
+                                success: function(data) {
+                                    $('#msg-alert').html(data);
+                                    setTimeout(function() {
+                                        location.reload();
+                                    }, 2000)
+                                }
+                            });
+                        });
+                        // edit brand
+                        $(document).on('click', '.editbrand', function() {
+                            var editbrand = $(this).val();
+                            // alert(editbrand);
+                            $.ajax({
+                                url: "fetch.php",
+                                method: "POST",
+                                data: {
+                                    editbrand: editbrand
+                                },
+                                dataType: "json",
+                                success: function(data) {
+                                    $('#editbrandtext').val(data.brand_title);
+                                    // $('#editCat').modal('show');
+                                    $('#idbrand').val(data.brand_id);
+                                }
+                            });
+                        });
+
+                        $(document).on('click', '#confirm_Brand', function() {
+                            var newtextbrand = $("#editbrandtext").val();
+                            var idbrand = $("#idbrand").val();
+                            // alert(newtextbrand);
+                            // alert(idbrand);
+                            $.ajax({
+                                url: "fetch.php",
+                                method: "POST",
+                                data: {
+                                    newtextbrand: newtextbrand,
+                                    idbrand: idbrand
+                                },
+                                success: function(data) {
+                                    setTimeout(function() {
+                                        location.reload();
+                                    }, 100)
+                                }
+                            });
+
+                        });
+
                     });
                 </script>
-
     </body>
 
     </html>
