@@ -34,8 +34,7 @@ if ($_SESSION["Userlevel"] == "A") {
 
     <body>
         <?php include "./include/navbar.php"; ?>
-
-        <!-- <?php include 'listProduct.php' ?> -->
+        
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-1"></div>

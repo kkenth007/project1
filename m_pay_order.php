@@ -122,11 +122,6 @@ if (isset($_SESSION["number_pay"])) {
                 <br>
 
                 <input type="hidden" name="hidden" id="hidden" value="1">
-                <!-- <label for="usr">อัพโหลดสลิป</label><br>
-                <div class="custom-file  col-sm-3">
-                    <input type="file" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label" for="customFile">Choose file</label>
-                </div> -->
                 <form method="post" action="" enctype="multipart/form-data" id="myform">
                     <div>
                         <input type="file" id="file" name="file" />
