@@ -4,7 +4,7 @@ session_start();
 if ($_SESSION["Userlevel"] == "A") {
     include "../db.php";
 
-    $select = "SELECT `cart_id`, `p_id`, `user_id`, `qty`, SUM(price*qty) AS price , `ref_track_code`, `p_status`, `tr_id` FROM order_store GROUP BY tr_id ORDER BY cart_id";
+    $select = "SELECT `cart_id`, `p_id`, `user_id`, `qty`, SUM(price*qty) AS price , `p_status`, `tr_id` FROM order_store GROUP BY tr_id ORDER BY cart_id";
     $result = mysqli_query($con, $select);
 
     ?>

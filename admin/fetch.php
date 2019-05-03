@@ -221,7 +221,7 @@ if (isset($_POST['confirm_OK_save_track'])) {
     $id_member = $_POST['c_member'];
     $track = $_POST['track'];
 
-    $update = "UPDATE `order_store` SET`ref_track_code`='$track',`p_status`='ชำระเรียบร้อย' WHERE tr_id = '$tr_id'";
+    $update = "UPDATE `order_store` SET `p_status` = 'ชำระเรียบร้อย' WHERE `order_store`.`tr_id` = '$tr_id'";
     $update1 = "UPDATE `track_store` SET `track_code`='$track' WHERE ref_pay_id ='$tr_id'";
     mysqli_query($con, $update);
     mysqli_query($con, $update1);

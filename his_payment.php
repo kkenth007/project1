@@ -1,8 +1,13 @@
 <?php session_start();
 include "db.php";
 $user_id = $_SESSION["UserID"];
-$select = "SELECT `cart_id`, `p_id`, `user_id`, `qty`, SUM(price*qty) AS price , `ref_track_code`, `p_status`, `tr_id` FROM order_store WHERE user_id= 11 GROUP BY tr_id ORDER BY cart_id";
-$result = mysqli_query($con, $select);
+$select = "SELECT `cart_id`, `p_id`, `user_id`, `qty`, SUM(price*qty) AS price , `p_status`, `tr_id` FROM order_store WHERE user_id= '$user_id' GROUP BY tr_id ORDER BY cart_id";
+$result = mysqli_query($con,$select);
+// print_r($result);
+// if (!$$result) {
+//     echo mysqli_error($con);
+//     exit();
+// }
 
 ?>
 <!DOCTYPE html>
